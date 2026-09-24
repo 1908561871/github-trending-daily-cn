@@ -1,0 +1,1429 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Github GitHub 热门仓库日报 2026-05-17</title>
+  <style>
+    :root { color-scheme: light; --bg: #f4f6f8; --panel: #fff; --text: #152033; --muted: #667085; --line: #d9dee8; --ink: #111827; --daily: #1f6feb; --weekly: #0f8b6f; --monthly: #b45309; --hot: #b42318; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; }
+    header { background: var(--ink); color: #fff; padding: 30px 20px 24px; }
+    .wrap { max-width: 1080px; margin: 0 auto; }
+    h1 { margin: 0 0 10px; font-size: 30px; letter-spacing: 0; }
+    .subtitle { margin: 0; color: #cbd5e1; }
+    main { padding: 24px 20px 48px; }
+    h2 { font-size: 22px; margin: 0 0 4px; }
+    .notice { border-left: 4px solid #d97706; background: #fff8eb; padding: 12px 14px; border-radius: 6px; margin-bottom: 20px; color: #7c4a03; }
+    .tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 18px; }
+    .tab { appearance: none; border: 1px solid var(--line); background: var(--panel); color: var(--text); border-radius: 8px; padding: 14px 16px; text-align: left; cursor: pointer; box-shadow: 0 1px 2px rgba(16,24,40,.04); }
+    .tab strong, .tab span { display: block; }
+    .tab strong { font-size: 16px; }
+    .tab span { color: var(--muted); font-size: 13px; margin-top: 2px; }
+    .tab.active { color: #fff; border-color: transparent; }
+    .tab.daily.active { background: var(--daily); }
+    .tab.weekly.active { background: var(--weekly); }
+    .tab.monthly.active { background: var(--monthly); }
+    .tab.active span { color: rgba(255,255,255,.82); }
+    .period-panel { display: none; }
+    .period-panel.active { display: block; }
+    .panel-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+    .panel-head p { margin: 0; color: var(--muted); }
+    .panel-head > span { border: 1px solid var(--line); border-radius: 999px; color: #344054; background: #fff; padding: 4px 10px; font-size: 13px; white-space: nowrap; margin-top: 4px; }
+    .rank-list { display: grid; gap: 12px; }
+    .rank-card { display: grid; grid-template-columns: 64px minmax(0, 1fr); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px; box-shadow: 0 1px 2px rgba(16,24,40,.04); }
+    .rank-no { color: var(--daily); font-size: 22px; font-weight: 800; }
+    .weekly .rank-no { color: var(--weekly); }
+    .monthly .rank-no { color: var(--monthly); }
+    .rank-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
+    h3 { margin: 0 0 8px; font-size: 20px; }
+    h3 a { color: var(--daily); text-decoration: none; overflow-wrap: anywhere; }
+    .weekly h3 a { color: var(--weekly); }
+    .monthly h3 a { color: var(--monthly); }
+    .growth { border: 1px solid var(--line); border-radius: 999px; color: #344054; background: #fbfcfe; padding: 4px 10px; font-size: 13px; white-space: nowrap; }
+    .rank-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+    .rank-badge { display: inline-flex; align-items: center; gap: 5px; border-radius: 999px; padding: 4px 9px; font-size: 12px; font-weight: 700; border: 1px solid transparent; white-space: nowrap; }
+    .rank-badge b { font-weight: 800; }
+    .rank-badge small { font-size: 11px; font-weight: 600; opacity: .86; }
+    .rank-badge.daily { color: #0f4da1; background: #edf5ff; border-color: #c9defa; }
+    .rank-badge.weekly { color: #076451; background: #eaf8f3; border-color: #bfe7da; }
+    .rank-badge.monthly { color: #8a3d05; background: #fff4e5; border-color: #f4d2a5; }
+    .signal { border: 1px solid #f6c6c2; border-radius: 999px; padding: 4px 9px; font-size: 12px; color: var(--hot); background: #fff4f2; font-weight: 700; }
+    .desc { margin: 0 0 12px; color: #344054; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .meta span { border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px; font-size: 12px; color: #344054; background: #fbfcfe; }
+    .topics { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    .topics span { background: #eaf3ff; color: #1557b0; border-radius: 6px; padding: 3px 7px; font-size: 12px; }
+    dl { display: grid; grid-template-columns: 120px 1fr; gap: 8px 14px; margin: 0; }
+    dt { color: var(--muted); }
+    dd { margin: 0; }
+    footer { padding: 20px; color: var(--muted); text-align: center; font-size: 13px; }
+    @media (max-width: 760px) { .tabs { grid-template-columns: 1fr; } .rank-card { grid-template-columns: 1fr; } .rank-no { margin-bottom: 8px; } .rank-head, .panel-head { display: block; } .growth, .panel-head > span { display: inline-block; margin-top: 8px; } dl { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) { h1 { font-size: 25px; } main { padding-left: 14px; padding-right: 14px; } .rank-card { padding: 14px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Github GitHub 热门仓库日报 2026-05-17</h1>
+      <p class="subtitle">生成时间：2026/05/17 22:50（Asia/Shanghai） · 去重 45 个唯一仓库，重复 7 个 · 数据源 GitHub Trending</p>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="notice">daily 仅解析到 18 个有效仓库；weekly 仅解析到 15 个有效仓库；monthly 仅解析到 19 个有效仓库；部分仓库详情补充失败，已使用 Trending 页面字段兜底</div>
+    <div class="tabs" role="tablist" aria-label="GitHub Trending 榜单切换"><button class="tab daily active" type="button" data-period="daily">
+    <strong>Daily Top 20</strong>
+    <span>18</span>
+  </button><button class="tab weekly" type="button" data-period="weekly">
+    <strong>Weekly Top 20</strong>
+    <span>15</span>
+  </button><button class="tab monthly" type="button" data-period="monthly">
+    <strong>Monthly Top 20</strong>
+    <span>19</span>
+  </button></div>
+    <section class="period-panel daily active" id="daily" data-period="daily">
+      <div class="panel-head">
+        <div>
+          <h2>Daily Top 20</h2>
+          <p>过去一天增长最快，适合发现突然冒头的新项目。</p>
+        </div>
+        <span>18 个仓库</span>
+      </div>
+      <div class="rank-list"><article class="rank-card">
+        <div class="rank-no">#1</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/tinyhumansai/openhuman" target="_blank" rel="noreferrer">tinyhumansai/openhuman</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#1<small>+1,694</small></span></div>
+            </div>
+            <div class="growth">+1,694 stars</div>
+          </div>
+          <p class="desc">Your Personal AI super intelligence. Private, Simple and extremely powerful.</p>
+          <div class="meta">
+            <span>Rust</span>
+            <span>12,019 stars</span>
+            <span>1,048 forks</span>
+            <span>GPL-3.0</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>OpenHuman &amp;nbsp; OpenHuman is your Personal AI super intelligence. Private, Simple and extremely powerful. Discord • Reddit • X/Twitter • Docs • Follow @senamakel Creator 🇺🇸 English 🇨🇳 简体中文 Early Beta : Under active development. Expect…</dd>
+            <dt>为什么关注</dt><dd>AI 应用层热度高，项目可能代表新的产品形态或工程实践。</dd>
+            <dt>适合谁看</dt><dd>Rust 开发者、技术负责人和开源趋势观察者。</dd>
+            <dt>风险判断</dt><dd>项目仍偏早期，接入前需要验证稳定性和升级路径。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#2</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noreferrer">HKUDS/CLI-Anything</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#2<small>+333</small></span></div>
+            </div>
+            <div class="growth">+333 stars</div>
+          </div>
+          <p class="desc">&quot;CLI-Anything: Making ALL Software Agent-Native&quot; -- CLI-Hub: https://clianything.cc/</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>35,322 stars</span>
+            <span>3,466 forks</span>
+            <span>Apache-2.0</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>&amp;nbsp; CLI-Anything: Making ALL Software Agent-Native Today&#39;s Software Serves Humans👨‍💻. Tomorrow&#39;s Users will be Agents🤖. CLI-Anything: Bridging the Gap Between AI Agents and the World&#39;s Software 🌐 CLI-Hub https://hkuds.github.io/CLI-…</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>AI Agent、工程效能、自动化工具链团队。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#3</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/calcom/cal.diy" target="_blank" rel="noreferrer">calcom/cal.diy</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#3<small>+425</small></span></div>
+            </div>
+            <div class="growth">+425 stars</div>
+          </div>
+          <p class="desc">Scheduling infrastructure for absolutely everyone.</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>43,053 stars</span>
+            <span>13,363 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>next-auth</span><span>nextjs</span><span>open-source</span><span>postgresql</span><span>prisma</span><span>t3-stack</span><span>tailwindcss</span><span>trpc</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>WARNING Use at your own risk. Cal.diy is the open source community edition of Cal.com and it is intended for users who want to self-host their own Cal.diy instance. It is strictly recommended for personal, non-production use. Please review…</dd>
+            <dt>为什么关注</dt><dd>自托管和开源替代方案有明确落地价值，适合评估成本、隐私和可控性。</dd>
+            <dt>适合谁看</dt><dd>TypeScript 开发者、技术负责人和开源趋势观察者。</dd>
+            <dt>风险判断</dt><dd>issue 数较高，采用前建议重点看维护节奏和关键问题。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#4</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/oven-sh/bun" target="_blank" rel="noreferrer">oven-sh/bun</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#4<small>+908</small></span><span class="rank-badge weekly"><b>周榜</b>#5<small>+1,328</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth">+908 stars</div>
+          </div>
+          <p class="desc">Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one</p>
+          <div class="meta">
+            <span>Rust</span>
+            <span>91,618 stars</span>
+            <span>4,568 forks</span>
+            <span>NOASSERTION</span>
+          </div>
+          <div class="topics"><span>bun</span><span>bundler</span><span>javascript</span><span>javascriptcore</span><span>jsx</span><span>nodejs</span><span>npm</span><span>react</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Bun Documentation &amp;nbsp;&amp;nbsp;•&amp;nbsp;&amp;nbsp; Discord &amp;nbsp;&amp;nbsp;•&amp;nbsp;&amp;nbsp; Issues &amp;nbsp;&amp;nbsp;•&amp;nbsp;&amp;nbsp; Roadmap Read the docs → https://bun.com/docs What is Bun? Bun is an all-in-one toolkit for JavaScript and TypeScript apps. It sh…</dd>
+            <dt>为什么关注</dt><dd>同时进入多个榜单，说明热度不只是单日波动。</dd>
+            <dt>适合谁看</dt><dd>Rust 开发者、技术负责人和开源趋势观察者。</dd>
+            <dt>风险判断</dt><dd>issue 数较高，采用前建议重点看维护节奏和关键问题。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#5</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/Anil-matcha/Open-Generative-AI" target="_blank" rel="noreferrer">Anil-matcha/Open-Generative-AI</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#5<small>+704</small></span><span class="rank-badge monthly"><b>月榜</b>#15<small>+9,226</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth">+704 stars</div>
+          </div>
+          <p class="desc">Open-source alternative to AI video platforms — Free AI image &amp; video generation studio with 200+ models (Flux, Midjourney, Kling, Sora, Veo). No content filters. Self-hosted, MIT licensed.</p>
+          <div class="meta">
+            <span>JavaScript</span>
+            <span>14,828 stars</span>
+            <span>2,562 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>ai-art-generator</span><span>ai-image-generation</span><span>ai-video-generation</span><span>creative-tools</span><span>flux-1</span><span>generative-ai</span><span>image-to-video</span><span>javascript</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Open Generative AI — Open-Source Alternative to AI Video Platforms The free, open-source alternative to AI Video Platforms. Generate AI images and videos using 200+ state-of-the-art models — no content filters, no closed ecosystem, no subs…</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>内容生产、AIGC、创意工具链开发者。</dd>
+            <dt>风险判断</dt><dd>License 未标注，商用或二次分发前需要先确认授权。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#6</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/BigBodyCobain/Shadowbroker" target="_blank" rel="noreferrer">BigBodyCobain/Shadowbroker</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#6<small>+165</small></span></div>
+            </div>
+            <div class="growth">+165 stars</div>
+          </div>
+          <p class="desc">Open-source intelligence for the global theater. Track everything from the corporate/private jets of the wealthy, and spy satellites, to seismic events in one unified interface. Hook an AI agent up to have it parse through data and find pr…</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>6,778 stars</span>
+            <span>1,083 forks</span>
+            <span>AGPL-3.0</span>
+          </div>
+          <div class="topics"><span>air-force-one</span><span>airforce1</span><span>asdb</span><span>cctv</span><span>cctv-cameras</span><span>cctv-surveillance</span><span>earthquake-visualization</span><span>elonjet</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>🛰️ S H A D O W B R O K E R Global Threat Intercept — Real-Time Geospatial Intelligence Platform --- ShadowBroker /uploads/46f99d19fa141a2efba37feee9de8aab/Title.jpg https://github.com/user-attachments/assets/248208ec-62f7-49d1-831d-4bd0a1…</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>安全研究、合规测试或情报分析方向的开发者。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#7</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/tech-leads-club/agent-skills" target="_blank" rel="noreferrer">tech-leads-club/agent-skills</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#7<small>+44</small></span></div>
+            </div>
+            <div class="growth">+44 stars</div>
+          </div>
+          <p class="desc">The secure, validated skill registry for professional AI coding agents. Extend Antigravity, Claude Code, Cursor, Copilot and more with absolute confidence.</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>2,624 stars</span>
+            <span>293 forks</span>
+            <span>NOASSERTION</span>
+          </div>
+          <div class="topics"><span>agent</span><span>ai</span><span>antigravity</span><span>claude-code</span><span>copilot</span><span>cursor</span><span>skills</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>🧠 Agent Skills The secure, validated skill registry for professional AI coding agents In an ecosystem where over 13% of marketplace skills contain critical vulnerabilities , Agent Skills stands apart as a hardened library of verified , te…</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>AI Agent、工程效能、自动化工具链团队。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#8</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/NirDiamant/agents-towards-production" target="_blank" rel="noreferrer">NirDiamant/agents-towards-production</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#8<small>+225</small></span></div>
+            </div>
+            <div class="growth">+225 stars</div>
+          </div>
+          <p class="desc">End-to-end, code-first tutorials for building production-grade GenAI agents. From prototype to enterprise deployment.</p>
+          <div class="meta">
+            <span>Jupyter Notebook</span>
+            <span>19,765 stars</span>
+            <span>2,636 forks</span>
+            <span>NOASSERTION</span>
+          </div>
+          <div class="topics"><span>agent</span><span>agent-framework</span><span>agents</span><span>ai-agents</span><span>deployment</span><span>genai</span><span>generative-ai</span><span>langgraph</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Agents Towards Production The open-source playbook for turning AI agents into real-world products. Agents Towards Production is your go‑to resource for building production‑ready GenAI agents that scale from prototype to enterprise. Tutoria…</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>AI Agent、工程效能、自动化工具链团队。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#9</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/dograh-hq/dograh" target="_blank" rel="noreferrer">dograh-hq/dograh</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#9<small>+287</small></span></div>
+            </div>
+            <div class="growth">+287 stars</div>
+          </div>
+          <p class="desc">Open Source Voice Agent Platform</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>1,457 stars</span>
+            <span>340 forks</span>
+            <span>BSD-2-Clause</span>
+          </div>
+          <div class="topics"><span>ai</span><span>ai-agents</span><span>conversational-ai</span><span>fastapi</span><span>llm</span><span>nextjs</span><span>open-source</span><span>outbound-calls</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Dograh AI The open-source, self-hostable alternative to Vapi &amp; Retell — build production voice agents with a drag-and-drop workflow builder. From zero to a working bot in under 2 minutes. &amp;nbsp; &amp;nbsp; 📖 Docs &amp;nbsp;·&amp;nbsp; 📜 BSD 2-Clause…</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>AI Agent、工程效能、自动化工具链团队。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#10</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/K-Dense-AI/scientific-agent-skills" target="_blank" rel="noreferrer">K-Dense-AI/scientific-agent-skills</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#10<small>+764</small></span></div>
+            </div>
+            <div class="growth">+764 stars</div>
+          </div>
+          <p class="desc">A set of ready to use Agent Skills for research, science, engineering, analysis, finance and writing.</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>23,602 stars</span>
+            <span>2,522 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>agent-skills</span><span>ai-scientist</span><span>bioinformatics</span><span>chemoinformatics</span><span>claude</span><span>claude-skills</span><span>claudecode</span><span>clinical-research</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Scientific Agent Skills 🔔 Claude Scientific Skills is now Scientific Agent Skills. Same skills, broader compatibility — now works with any AI agent that supports the open Agent Skills https://agentskills.io/ standard, not just Claude. New…</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>金融科技、投研工具、量化或 Agent 金融应用研究者。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#11</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/Light-Heart-Labs/DreamServer" target="_blank" rel="noreferrer">Light-Heart-Labs/DreamServer</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#11<small>+89</small></span></div>
+            </div>
+            <div class="growth">+89 stars</div>
+          </div>
+          <p class="desc">Local AI anywhere, for everyone — LLM inference, chat UI, voice, agents, workflows, RAG, and image generation. No cloud, no subscriptions.</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>979 stars</span>
+            <span>196 forks</span>
+            <span>Apache-2.0</span>
+          </div>
+          <div class="topics"><span>ai-agents</span><span>amd</span><span>comfyui</span><span>docker</span><span>llama-cpp</span><span>llm</span><span>local-ai</span><span>n8n</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Local AI anywhere, for everyone — LLM inference, chat UI, voice, agents, workflows, RAG, and image generation. No cloud, no subscriptions.</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>内容生产、AIGC、创意工具链开发者。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#12</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/KeygraphHQ/shannon" target="_blank" rel="noreferrer">KeygraphHQ/shannon</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#12<small>+335</small></span></div>
+            </div>
+            <div class="growth">+335 stars</div>
+          </div>
+          <p class="desc">Shannon Lite is an autonomous, white-box AI pentester for web applications and APIs. It analyzes your source code, identifies attack vectors, and executes real exploits to prove vulnerabilities before they reach production.</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>42,522 stars</span>
+            <span>4,861 forks</span>
+            <span>AGPL-3.0</span>
+          </div>
+          <div class="topics"><span>penetration-testing</span><span>pentesting</span><span>security-audit</span><span>security-automation</span><span>security-tools</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Shannon Lite is an autonomous, white-box AI pentester for web applications and APIs. It analyzes your source code, identifies attack vectors, and executes real exploits to prove vulnerabilities before they reach production.</dd>
+            <dt>为什么关注</dt><dd>AI 应用层热度高，项目可能代表新的产品形态或工程实践。</dd>
+            <dt>适合谁看</dt><dd>安全研究、合规测试或情报分析方向的开发者。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#13</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/TryGhost/Ghost" target="_blank" rel="noreferrer">TryGhost/Ghost</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#13<small>+209</small></span></div>
+            </div>
+            <div class="growth">+209 stars</div>
+          </div>
+          <p class="desc">Independent technology for modern publishing, memberships, subscriptions and newsletters.</p>
+          <div class="meta">
+            <span>JavaScript</span>
+            <span>53,109 stars</span>
+            <span>11,595 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>blogging</span><span>cms</span><span>ghost</span><span>javascript</span><span>journalism</span><span>nodejs</span><span>publishing</span><span>web-application</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Independent technology for modern publishing, memberships, subscriptions and newsletters.</dd>
+            <dt>为什么关注</dt><dd>排名靠前且增长明显，值得快速浏览其定位、代码质量和社区反馈。</dd>
+            <dt>适合谁看</dt><dd>JavaScript 开发者、技术负责人和开源趋势观察者。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#14</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/medusajs/medusa" target="_blank" rel="noreferrer">medusajs/medusa</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#14<small>+200</small></span></div>
+            </div>
+            <div class="growth">+200 stars</div>
+          </div>
+          <p class="desc">The world&#39;s most flexible commerce platform.</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>33,292 stars</span>
+            <span>4,448 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>commerce</span><span>e-commerce</span><span>ecommerce</span><span>framework</span><span>javascript</span><span>medusa</span><span>nodejs</span><span>react</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>The world&#39;s most flexible commerce platform.</dd>
+            <dt>为什么关注</dt><dd>排名靠前且增长明显，值得快速浏览其定位、代码质量和社区反馈。</dd>
+            <dt>适合谁看</dt><dd>TypeScript 开发者、技术负责人和开源趋势观察者。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#15</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/knadh/listmonk" target="_blank" rel="noreferrer">knadh/listmonk</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#15<small>+222</small></span></div>
+            </div>
+            <div class="growth">+222 stars</div>
+          </div>
+          <p class="desc">High performance, self-hosted, newsletter and mailing list manager with a modern dashboard. Single binary app.</p>
+          <div class="meta">
+            <span>Go</span>
+            <span>20,397 stars</span>
+            <span>2,128 forks</span>
+            <span>AGPL-3.0</span>
+          </div>
+          <div class="topics"><span>campaign</span><span>campaign-management</span><span>email-marketing</span><span>email-subscription</span><span>listmonk</span><span>mailing-list</span><span>newsletter</span><span>newsletter-management</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>High performance, self-hosted, newsletter and mailing list manager with a modern dashboard. Single binary app.</dd>
+            <dt>为什么关注</dt><dd>AI 应用层热度高，项目可能代表新的产品形态或工程实践。</dd>
+            <dt>适合谁看</dt><dd>Go 开发者、技术负责人和开源趋势观察者。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#16</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/plausible/analytics" target="_blank" rel="noreferrer">plausible/analytics</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#16<small>+128</small></span></div>
+            </div>
+            <div class="growth">+128 stars</div>
+          </div>
+          <p class="desc">Open source, privacy-first web analytics. Lightweight, cookie-free Google Analytics alternative. Self-hosted or cloud.</p>
+          <div class="meta">
+            <span>Elixir</span>
+            <span>25,151 stars</span>
+            <span>1,438 forks</span>
+            <span>AGPL-3.0</span>
+          </div>
+          <div class="topics"><span>analytics</span><span>analytics-dashboard</span><span>clickhouse</span><span>elixir</span><span>google-analytics</span><span>marketing</span><span>open-source-analytics</span><span>phoenix</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Open source, privacy-first web analytics. Lightweight, cookie-free Google Analytics alternative. Self-hosted or cloud.</dd>
+            <dt>为什么关注</dt><dd>自托管和开源替代方案有明确落地价值，适合评估成本、隐私和可控性。</dd>
+            <dt>适合谁看</dt><dd>Elixir 开发者、技术负责人和开源趋势观察者。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#17</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/colbymchenry/codegraph" target="_blank" rel="noreferrer">colbymchenry/codegraph</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#17<small>+860</small></span></div>
+            </div>
+            <div class="growth">+860 stars</div>
+          </div>
+          <p class="desc">Pre-indexed code knowledge graph for Claude Code — fewer tokens, fewer tool calls, 100% local</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>3,042 stars</span>
+            <span>247 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Pre-indexed code knowledge graph for Claude Code — fewer tokens, fewer tool calls, 100% local</dd>
+            <dt>为什么关注</dt><dd>排名靠前且增长明显，值得快速浏览其定位、代码质量和社区反馈。</dd>
+            <dt>适合谁看</dt><dd>TypeScript 开发者、技术负责人和开源趋势观察者。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#18</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/microsoft/ai-agents-for-beginners" target="_blank" rel="noreferrer">microsoft/ai-agents-for-beginners</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#18<small>+180</small></span></div>
+            </div>
+            <div class="growth">+180 stars</div>
+          </div>
+          <p class="desc">12 Lessons to Get Started Building AI Agents</p>
+          <div class="meta">
+            <span>Jupyter Notebook</span>
+            <span>62,207 stars</span>
+            <span>20,988 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>agentic-ai</span><span>agentic-framework</span><span>agentic-rag</span><span>ai-agents</span><span>ai-agents-framework</span><span>autogen</span><span>generative-ai</span><span>semantic-kernel</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>12 Lessons to Get Started Building AI Agents</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>AI Agent、工程效能、自动化工具链团队。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article></div>
+    </section>
+<section class="period-panel weekly" id="weekly" data-period="weekly">
+      <div class="panel-head">
+        <div>
+          <h2>Weekly Top 20</h2>
+          <p>过去一周持续升温，能过滤掉一部分短时波动。</p>
+        </div>
+        <span>15 个仓库</span>
+      </div>
+      <div class="rank-list"><article class="rank-card">
+        <div class="rank-no">#1</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/CloakHQ/CloakBrowser" target="_blank" rel="noreferrer">CloakHQ/CloakBrowser</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#1<small>+8,618</small></span><span class="rank-badge monthly"><b>月榜</b>#13<small>+11,015</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth">+8,618 stars</div>
+          </div>
+          <p class="desc">Stealth Chromium that passes every bot detection test. Drop-in Playwright replacement with source-level fingerprint patches. 30/30 tests passed.</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>13,241 stars</span>
+            <span>1,028 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>ai-agents</span><span>anti-detect</span><span>antidetect-browser</span><span>bot-detection</span><span>browser-automation</span><span>captcha-bypass</span><span>chromium</span><span>cloudflare</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Stealth Chromium that passes every bot detection test. Not a patched config. Not a JS injection. A real Chromium binary with fingerprints modified at the C++ source level. Antibot systems score it as a normal browser — because it is a norm…</dd>
+            <dt>为什么关注</dt><dd>同时进入多个榜单，说明热度不只是单日波动。</dd>
+            <dt>适合谁看</dt><dd>AI Agent、工程效能、自动化工具链团队。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#2</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/rohitg00/agentmemory" target="_blank" rel="noreferrer">rohitg00/agentmemory</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#2<small>+6,907</small></span><span class="rank-badge monthly"><b>月榜</b>#14<small>+8,330</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth">+6,907 stars</div>
+          </div>
+          <p class="desc">#1 Persistent memory for AI coding agents based on real-world benchmarks</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>10,894 stars</span>
+            <span>919 forks</span>
+            <span>Apache-2.0</span>
+          </div>
+          <div class="topics"><span>agentmemory</span><span>agents</span><span>ai</span><span>claude</span><span>claudecode</span><span>codex</span><span>copilot</span><span>cursor</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Your coding agent remembers everything. No more re-explaining. Built on iii engine Persistent memory for Claude Code, Cursor, Gemini CLI, Codex CLI, Hermes, OpenClaw, pi, OpenCode, and any MCP client. The gist extends Karpathy&#39;s LLM Wiki p…</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>AI Agent、工程效能、自动化工具链团队。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#3</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/yikart/AiToEarn" target="_blank" rel="noreferrer">yikart/AiToEarn</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#3<small>+4,765</small></span></div>
+            </div>
+            <div class="growth">+4,765 stars</div>
+          </div>
+          <p class="desc">Let&#39;s use AI to Earn!</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>14,518 stars</span>
+            <span>2,434 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>auto-publish</span><span>douyin</span><span>douyin-api</span><span>electron-app</span><span>electron-react</span><span>kuaishou</span><span>kwai</span><span>published</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Let&#39;s use AI to Earn!</dd>
+            <dt>为什么关注</dt><dd>AI 应用层热度高，项目可能代表新的产品形态或工程实践。</dd>
+            <dt>适合谁看</dt><dd>TypeScript 开发者、技术负责人和开源趋势观察者。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#4</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/anthropics/financial-services" target="_blank" rel="noreferrer">anthropics/financial-services</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#4<small>+6,935</small></span><span class="rank-badge monthly"><b>月榜</b>#8<small>+16,163</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth">+6,935 stars</div>
+          </div>
+          <p class="desc">未标注</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>24,134 stars</span>
+            <span>3,332 forks</span>
+            <span>Apache-2.0</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Claude for Financial Services Reference agents, skills, and data connectors for the financial-services workflows we see most — investment banking, equity research, private equity, and wealth management. Everything here is available two way…</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>Python 开发者、技术负责人和开源趋势观察者。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#5</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/oven-sh/bun" target="_blank" rel="noreferrer">oven-sh/bun</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#4<small>+908</small></span><span class="rank-badge weekly"><b>周榜</b>#5<small>+1,328</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth">+1,328 stars</div>
+          </div>
+          <p class="desc">Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one</p>
+          <div class="meta">
+            <span>Rust</span>
+            <span>91,618 stars</span>
+            <span>4,568 forks</span>
+            <span>NOASSERTION</span>
+          </div>
+          <div class="topics"><span>bun</span><span>bundler</span><span>javascript</span><span>javascriptcore</span><span>jsx</span><span>nodejs</span><span>npm</span><span>react</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Bun Documentation &amp;nbsp;&amp;nbsp;•&amp;nbsp;&amp;nbsp; Discord &amp;nbsp;&amp;nbsp;•&amp;nbsp;&amp;nbsp; Issues &amp;nbsp;&amp;nbsp;•&amp;nbsp;&amp;nbsp; Roadmap Read the docs → https://bun.com/docs What is Bun? Bun is an all-in-one toolkit for JavaScript and TypeScript apps. It sh…</dd>
+            <dt>为什么关注</dt><dd>同时进入多个榜单，说明热度不只是单日波动。</dd>
+            <dt>适合谁看</dt><dd>Rust 开发者、技术负责人和开源趋势观察者。</dd>
+            <dt>风险判断</dt><dd>issue 数较高，采用前建议重点看维护节奏和关键问题。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#6</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/mattpocock/skills" target="_blank" rel="noreferrer">mattpocock/skills</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#6<small>+18,795</small></span><span class="rank-badge monthly"><b>月榜</b>#1<small>+70,819</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth">+18,795 stars</div>
+          </div>
+          <p class="desc">Skills for Real Engineers. Straight from my .claude directory.</p>
+          <div class="meta">
+            <span>Shell</span>
+            <span>88,130 stars</span>
+            <span>7,687 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Skills For Real Engineers skills.sh https://skills.sh/b/mattpocock/skills https://skills.sh/mattpocock/skills My agent skills that I use every day to do real engineering - not vibe coding. Developing real applications is hard. Approaches l…</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>Shell 开发者、技术负责人和开源趋势观察者。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#7</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/ruvnet/RuView" target="_blank" rel="noreferrer">ruvnet/RuView</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#7<small>+5,861</small></span></div>
+            </div>
+            <div class="growth">+5,861 stars</div>
+          </div>
+          <p class="desc">π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel of video.</p>
+          <div class="meta">
+            <span>Rust</span>
+            <span>58,932 stars</span>
+            <span>7,684 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>agentic-ai</span><span>densepose</span><span>esp32</span><span>firmware</span><span>mcu</span><span>mincut</span><span>monitoring</span><span>pose-estimation</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel of video.</dd>
+            <dt>为什么关注</dt><dd>排名靠前且增长明显，值得快速浏览其定位、代码质量和社区反馈。</dd>
+            <dt>适合谁看</dt><dd>安全研究、合规测试或情报分析方向的开发者。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#8</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/bytedance/UI-TARS-desktop" target="_blank" rel="noreferrer">bytedance/UI-TARS-desktop</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#8<small>+3,105</small></span></div>
+            </div>
+            <div class="growth">+3,105 stars</div>
+          </div>
+          <p class="desc">The Open-Source Multimodal AI Agent Stack: Connecting Cutting-Edge AI Models and Agent Infra</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>34,335 stars</span>
+            <span>3,433 forks</span>
+            <span>Apache-2.0</span>
+          </div>
+          <div class="topics"><span>agent</span><span>agent-tars</span><span>browser-use</span><span>computer-use</span><span>cowork</span><span>gui-agent</span><span>gui-operator</span><span>mcp</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>The Open-Source Multimodal AI Agent Stack: Connecting Cutting-Edge AI Models and Agent Infra</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>AI Agent、工程效能、自动化工具链团队。</dd>
+            <dt>风险判断</dt><dd>issue 数较高，采用前建议重点看维护节奏和关键问题。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#9</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/apernet/hysteria" target="_blank" rel="noreferrer">apernet/hysteria</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#9<small>+1,042</small></span></div>
+            </div>
+            <div class="growth">+1,042 stars</div>
+          </div>
+          <p class="desc">Hysteria is a powerful, lightning fast and censorship resistant proxy.</p>
+          <div class="meta">
+            <span>Go</span>
+            <span>21,027 stars</span>
+            <span>2,163 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>censorship-circumvention</span><span>golang</span><span>http-proxy</span><span>hysteria</span><span>proxy</span><span>quic</span><span>relay</span><span>reliable-udp</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Hysteria is a powerful, lightning fast and censorship resistant proxy.</dd>
+            <dt>为什么关注</dt><dd>排名靠前且增长明显，值得快速浏览其定位、代码质量和社区反馈。</dd>
+            <dt>适合谁看</dt><dd>Go 开发者、技术负责人和开源趋势观察者。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#10</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/decolua/9router" target="_blank" rel="noreferrer">decolua/9router</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#10<small>+4,798</small></span><span class="rank-badge monthly"><b>月榜</b>#18<small>+8,431</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth">+4,798 stars</div>
+          </div>
+          <p class="desc">Unlimited FREE AI coding. Connect Claude Code, Codex, Cursor, Cline, Copilot, Antigravity to FREE Claude/GPT/Gemini via 40+ providers. Auto-fallback, RTK -40% tokens, never hit limits.</p>
+          <div class="meta">
+            <span>JavaScript</span>
+            <span>11,394 stars</span>
+            <span>1,739 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>ai-agents</span><span>ai-gateway</span><span>anthropic</span><span>chatgpt</span><span>claude</span><span>claude-code</span><span>cline</span><span>codex</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Unlimited FREE AI coding. Connect Claude Code, Codex, Cursor, Cline, Copilot, Antigravity to FREE Claude/GPT/Gemini via 40+ providers. Auto-fallback, RTK -40% tokens, never hit limits.</dd>
+            <dt>为什么关注</dt><dd>AI 应用层热度高，项目可能代表新的产品形态或工程实践。</dd>
+            <dt>适合谁看</dt><dd>AI Agent、工程效能、自动化工具链团队。</dd>
+            <dt>风险判断</dt><dd>issue 数较高，采用前建议重点看维护节奏和关键问题。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#11</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/HKUDS/AI-Trader" target="_blank" rel="noreferrer">HKUDS/AI-Trader</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#11<small>+2,475</small></span></div>
+            </div>
+            <div class="growth">+2,475 stars</div>
+          </div>
+          <p class="desc">&quot;AI-Trader: 100% Fully-Automated Agent-Native Trading&quot;</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>&quot;AI-Trader: 100% Fully-Automated Agent-Native Trading&quot;</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>金融科技、投研工具、量化或 Agent 金融应用研究者。</dd>
+            <dt>风险判断</dt><dd>License 未标注，商用或二次分发前需要先确认授权。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#12</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/millionco/react-doctor" target="_blank" rel="noreferrer">millionco/react-doctor</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#12<small>+2,643</small></span></div>
+            </div>
+            <div class="growth">+2,643 stars</div>
+          </div>
+          <p class="desc">Your agent writes bad React. This catches it</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Your agent writes bad React. This catches it</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>AI Agent、工程效能、自动化工具链团队。</dd>
+            <dt>风险判断</dt><dd>License 未标注，商用或二次分发前需要先确认授权。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#13</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/Hmbown/DeepSeek-TUI" target="_blank" rel="noreferrer">Hmbown/DeepSeek-TUI</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#13<small>+7,543</small></span></div>
+            </div>
+            <div class="growth">+7,543 stars</div>
+          </div>
+          <p class="desc">Coding agent for DeepSeek models that runs in your terminal</p>
+          <div class="meta">
+            <span>Rust</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Coding agent for DeepSeek models that runs in your terminal</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>AI Agent、工程效能、自动化工具链团队。</dd>
+            <dt>风险判断</dt><dd>License 未标注，商用或二次分发前需要先确认授权。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#14</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/facebook/pyrefly" target="_blank" rel="noreferrer">facebook/pyrefly</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#14<small>+351</small></span></div>
+            </div>
+            <div class="growth">+351 stars</div>
+          </div>
+          <p class="desc">A fast type checker and language server for Python</p>
+          <div class="meta">
+            <span>Rust</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>A fast type checker and language server for Python</dd>
+            <dt>为什么关注</dt><dd>排名靠前且增长明显，值得快速浏览其定位、代码质量和社区反馈。</dd>
+            <dt>适合谁看</dt><dd>Rust 开发者、技术负责人和开源趋势观察者。</dd>
+            <dt>风险判断</dt><dd>License 未标注，商用或二次分发前需要先确认授权。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#15</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/obra/superpowers" target="_blank" rel="noreferrer">obra/superpowers</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#15<small>+9,939</small></span></div>
+            </div>
+            <div class="growth">+9,939 stars</div>
+          </div>
+          <p class="desc">An agentic skills framework &amp; software development methodology that works.</p>
+          <div class="meta">
+            <span>Shell</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>An agentic skills framework &amp; software development methodology that works.</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>AI Agent、工程效能、自动化工具链团队。</dd>
+            <dt>风险判断</dt><dd>License 未标注，商用或二次分发前需要先确认授权。</dd>
+          </dl>
+        </div>
+      </article></div>
+    </section>
+<section class="period-panel monthly" id="monthly" data-period="monthly">
+      <div class="panel-head">
+        <div>
+          <h2>Monthly Top 20</h2>
+          <p>过去一个月长期热门，更适合判断趋势和生态方向。</p>
+        </div>
+        <span>19 个仓库</span>
+      </div>
+      <div class="rank-list"><article class="rank-card">
+        <div class="rank-no">#1</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/mattpocock/skills" target="_blank" rel="noreferrer">mattpocock/skills</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#6<small>+18,795</small></span><span class="rank-badge monthly"><b>月榜</b>#1<small>+70,819</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth">+70,819 stars</div>
+          </div>
+          <p class="desc">Skills for Real Engineers. Straight from my .claude directory.</p>
+          <div class="meta">
+            <span>Shell</span>
+            <span>88,130 stars</span>
+            <span>7,687 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Skills For Real Engineers skills.sh https://skills.sh/b/mattpocock/skills https://skills.sh/mattpocock/skills My agent skills that I use every day to do real engineering - not vibe coding. Developing real applications is hard. Approaches l…</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>Shell 开发者、技术负责人和开源趋势观察者。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#2</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/Alishahryar1/free-claude-code" target="_blank" rel="noreferrer">Alishahryar1/free-claude-code</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#2<small>+23,165</small></span></div>
+            </div>
+            <div class="growth">+23,165 stars</div>
+          </div>
+          <p class="desc">Use claude-code for free in the terminal, VSCode extension or discord like OpenClaw (voice supported)</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Use claude-code for free in the terminal, VSCode extension or discord like OpenClaw (voice supported)</dd>
+            <dt>为什么关注</dt><dd>排名靠前且增长明显，值得快速浏览其定位、代码质量和社区反馈。</dd>
+            <dt>适合谁看</dt><dd>Python 开发者、技术负责人和开源趋势观察者。</dd>
+            <dt>风险判断</dt><dd>License 未标注，商用或二次分发前需要先确认授权。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#3</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/multica-ai/andrej-karpathy-skills" target="_blank" rel="noreferrer">multica-ai/andrej-karpathy-skills</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#3<small>+85,711</small></span></div>
+            </div>
+            <div class="growth">+85,711 stars</div>
+          </div>
+          <p class="desc">A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy&#39;s observations on LLM coding pitfalls.</p>
+          <div class="meta">
+            <span>未标注</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy&#39;s observations on LLM coding pitfalls.</dd>
+            <dt>为什么关注</dt><dd>AI 应用层热度高，项目可能代表新的产品形态或工程实践。</dd>
+            <dt>适合谁看</dt><dd>相关领域 开发者、技术负责人和开源趋势观察者。</dd>
+            <dt>风险判断</dt><dd>License 未标注，商用或二次分发前需要先确认授权。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#4</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/Fincept-Corporation/FinceptTerminal" target="_blank" rel="noreferrer">Fincept-Corporation/FinceptTerminal</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#4<small>+18,337</small></span></div>
+            </div>
+            <div class="growth">+18,337 stars</div>
+          </div>
+          <p class="desc">FinceptTerminal is a modern finance application offering advanced market analytics, investment research, and economic data tools, designed for interactive exploration and data-driven decision-making in a user-friendly environment.</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>FinceptTerminal is a modern finance application offering advanced market analytics, investment research, and economic data tools, designed for interactive exploration and data-driven decision-making in a user-friendly environment.</dd>
+            <dt>为什么关注</dt><dd>排名靠前且增长明显，值得快速浏览其定位、代码质量和社区反馈。</dd>
+            <dt>适合谁看</dt><dd>金融科技、投研工具、量化或 Agent 金融应用研究者。</dd>
+            <dt>风险判断</dt><dd>License 未标注，商用或二次分发前需要先确认授权。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#5</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/AIDC-AI/Pixelle-Video" target="_blank" rel="noreferrer">AIDC-AI/Pixelle-Video</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#5<small>+13,265</small></span></div>
+            </div>
+            <div class="growth">+13,265 stars</div>
+          </div>
+          <p class="desc">🚀 AI 全自动短视频引擎 | AI Fully Automated Short Video Engine</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>🚀 AI 全自动短视频引擎 | AI Fully Automated Short Video Engine</dd>
+            <dt>为什么关注</dt><dd>AI 应用层热度高，项目可能代表新的产品形态或工程实践。</dd>
+            <dt>适合谁看</dt><dd>内容生产、AIGC、创意工具链开发者。</dd>
+            <dt>风险判断</dt><dd>License 未标注，商用或二次分发前需要先确认授权。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#6</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/heygen-com/hyperframes" target="_blank" rel="noreferrer">heygen-com/hyperframes</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#6<small>+18,580</small></span></div>
+            </div>
+            <div class="growth">+18,580 stars</div>
+          </div>
+          <p class="desc">Write HTML. Render video. Built for agents.</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Write HTML. Render video. Built for agents.</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>内容生产、AIGC、创意工具链开发者。</dd>
+            <dt>风险判断</dt><dd>License 未标注，商用或二次分发前需要先确认授权。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#7</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/ComposioHQ/awesome-codex-skills" target="_blank" rel="noreferrer">ComposioHQ/awesome-codex-skills</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#7<small>+9,254</small></span></div>
+            </div>
+            <div class="growth">+9,254 stars</div>
+          </div>
+          <p class="desc">A curated list of practical Codex skills for automating workflows across the Codex CLI and API.</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>A curated list of practical Codex skills for automating workflows across the Codex CLI and API.</dd>
+            <dt>为什么关注</dt><dd>排名靠前且增长明显，值得快速浏览其定位、代码质量和社区反馈。</dd>
+            <dt>适合谁看</dt><dd>Python 开发者、技术负责人和开源趋势观察者。</dd>
+            <dt>风险判断</dt><dd>License 未标注，商用或二次分发前需要先确认授权。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#8</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/anthropics/financial-services" target="_blank" rel="noreferrer">anthropics/financial-services</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#4<small>+6,935</small></span><span class="rank-badge monthly"><b>月榜</b>#8<small>+16,163</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth">+16,163 stars</div>
+          </div>
+          <p class="desc">未标注</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>24,134 stars</span>
+            <span>3,332 forks</span>
+            <span>Apache-2.0</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Claude for Financial Services Reference agents, skills, and data connectors for the financial-services workflows we see most — investment banking, equity research, private equity, and wealth management. Everything here is available two way…</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>Python 开发者、技术负责人和开源趋势观察者。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#9</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/Z4nzu/hackingtool" target="_blank" rel="noreferrer">Z4nzu/hackingtool</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#9<small>+17,059</small></span></div>
+            </div>
+            <div class="growth">+17,059 stars</div>
+          </div>
+          <p class="desc">ALL IN ONE Hacking Tool For Hackers</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>ALL IN ONE Hacking Tool For Hackers</dd>
+            <dt>为什么关注</dt><dd>排名靠前且增长明显，值得快速浏览其定位、代码质量和社区反馈。</dd>
+            <dt>适合谁看</dt><dd>Python 开发者、技术负责人和开源趋势观察者。</dd>
+            <dt>风险判断</dt><dd>License 未标注，商用或二次分发前需要先确认授权。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#10</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/soxoj/maigret" target="_blank" rel="noreferrer">soxoj/maigret</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#10<small>+9,553</small></span></div>
+            </div>
+            <div class="growth">+9,553 stars</div>
+          </div>
+          <p class="desc">🕵️‍♂️ Collect a dossier on a person by username from 3000+ sites</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>🕵️‍♂️ Collect a dossier on a person by username from 3000+ sites</dd>
+            <dt>为什么关注</dt><dd>排名靠前且增长明显，值得快速浏览其定位、代码质量和社区反馈。</dd>
+            <dt>适合谁看</dt><dd>Python 开发者、技术负责人和开源趋势观察者。</dd>
+            <dt>风险判断</dt><dd>License 未标注，商用或二次分发前需要先确认授权。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#11</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/addyosmani/agent-skills" target="_blank" rel="noreferrer">addyosmani/agent-skills</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#11<small>+26,268</small></span></div>
+            </div>
+            <div class="growth">+26,268 stars</div>
+          </div>
+          <p class="desc">Production-grade engineering skills for AI coding agents.</p>
+          <div class="meta">
+            <span>Shell</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Production-grade engineering skills for AI coding agents.</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>AI Agent、工程效能、自动化工具链团队。</dd>
+            <dt>风险判断</dt><dd>License 未标注，商用或二次分发前需要先确认授权。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#12</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/TauricResearch/TradingAgents" target="_blank" rel="noreferrer">TauricResearch/TradingAgents</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#12<small>+25,591</small></span></div>
+            </div>
+            <div class="growth">+25,591 stars</div>
+          </div>
+          <p class="desc">TradingAgents: Multi-Agents LLM Financial Trading Framework</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>TradingAgents: Multi-Agents LLM Financial Trading Framework</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>金融科技、投研工具、量化或 Agent 金融应用研究者。</dd>
+            <dt>风险判断</dt><dd>License 未标注，商用或二次分发前需要先确认授权。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#13</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/CloakHQ/CloakBrowser" target="_blank" rel="noreferrer">CloakHQ/CloakBrowser</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#1<small>+8,618</small></span><span class="rank-badge monthly"><b>月榜</b>#13<small>+11,015</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth">+11,015 stars</div>
+          </div>
+          <p class="desc">Stealth Chromium that passes every bot detection test. Drop-in Playwright replacement with source-level fingerprint patches. 30/30 tests passed.</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>13,241 stars</span>
+            <span>1,028 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>ai-agents</span><span>anti-detect</span><span>antidetect-browser</span><span>bot-detection</span><span>browser-automation</span><span>captcha-bypass</span><span>chromium</span><span>cloudflare</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Stealth Chromium that passes every bot detection test. Not a patched config. Not a JS injection. A real Chromium binary with fingerprints modified at the C++ source level. Antibot systems score it as a normal browser — because it is a norm…</dd>
+            <dt>为什么关注</dt><dd>同时进入多个榜单，说明热度不只是单日波动。</dd>
+            <dt>适合谁看</dt><dd>AI Agent、工程效能、自动化工具链团队。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#14</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/rohitg00/agentmemory" target="_blank" rel="noreferrer">rohitg00/agentmemory</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#2<small>+6,907</small></span><span class="rank-badge monthly"><b>月榜</b>#14<small>+8,330</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth">+8,330 stars</div>
+          </div>
+          <p class="desc">#1 Persistent memory for AI coding agents based on real-world benchmarks</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>10,894 stars</span>
+            <span>919 forks</span>
+            <span>Apache-2.0</span>
+          </div>
+          <div class="topics"><span>agentmemory</span><span>agents</span><span>ai</span><span>claude</span><span>claudecode</span><span>codex</span><span>copilot</span><span>cursor</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Your coding agent remembers everything. No more re-explaining. Built on iii engine Persistent memory for Claude Code, Cursor, Gemini CLI, Codex CLI, Hermes, OpenClaw, pi, OpenCode, and any MCP client. The gist extends Karpathy&#39;s LLM Wiki p…</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>AI Agent、工程效能、自动化工具链团队。</dd>
+            <dt>风险判断</dt><dd>需要结合 README、issue、release 和许可证进一步评估生产可用性。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#15</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/Anil-matcha/Open-Generative-AI" target="_blank" rel="noreferrer">Anil-matcha/Open-Generative-AI</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#5<small>+704</small></span><span class="rank-badge monthly"><b>月榜</b>#15<small>+9,226</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth">+9,226 stars</div>
+          </div>
+          <p class="desc">Open-source alternative to AI video platforms — Free AI image &amp; video generation studio with 200+ models (Flux, Midjourney, Kling, Sora, Veo). No content filters. Self-hosted, MIT licensed.</p>
+          <div class="meta">
+            <span>JavaScript</span>
+            <span>14,828 stars</span>
+            <span>2,562 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>ai-art-generator</span><span>ai-image-generation</span><span>ai-video-generation</span><span>creative-tools</span><span>flux-1</span><span>generative-ai</span><span>image-to-video</span><span>javascript</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Open Generative AI — Open-Source Alternative to AI Video Platforms The free, open-source alternative to AI Video Platforms. Generate AI images and videos using 200+ state-of-the-art models — no content filters, no closed ecosystem, no subs…</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>内容生产、AIGC、创意工具链开发者。</dd>
+            <dt>风险判断</dt><dd>License 未标注，商用或二次分发前需要先确认授权。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#16</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/zilliztech/claude-context" target="_blank" rel="noreferrer">zilliztech/claude-context</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#16<small>+5,285</small></span></div>
+            </div>
+            <div class="growth">+5,285 stars</div>
+          </div>
+          <p class="desc">Code search MCP for Claude Code. Make entire codebase the context for any coding agent.</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Code search MCP for Claude Code. Make entire codebase the context for any coding agent.</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>AI Agent、工程效能、自动化工具链团队。</dd>
+            <dt>风险判断</dt><dd>License 未标注，商用或二次分发前需要先确认授权。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#17</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noreferrer">NousResearch/hermes-agent</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#17<small>+61,663</small></span></div>
+            </div>
+            <div class="growth">+61,663 stars</div>
+          </div>
+          <p class="desc">The agent that grows with you</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>The agent that grows with you</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>AI Agent、工程效能、自动化工具链团队。</dd>
+            <dt>风险判断</dt><dd>License 未标注，商用或二次分发前需要先确认授权。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#18</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/decolua/9router" target="_blank" rel="noreferrer">decolua/9router</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#10<small>+4,798</small></span><span class="rank-badge monthly"><b>月榜</b>#18<small>+8,431</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth">+8,431 stars</div>
+          </div>
+          <p class="desc">Unlimited FREE AI coding. Connect Claude Code, Codex, Cursor, Cline, Copilot, Antigravity to FREE Claude/GPT/Gemini via 40+ providers. Auto-fallback, RTK -40% tokens, never hit limits.</p>
+          <div class="meta">
+            <span>JavaScript</span>
+            <span>11,394 stars</span>
+            <span>1,739 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>ai-agents</span><span>ai-gateway</span><span>anthropic</span><span>chatgpt</span><span>claude</span><span>claude-code</span><span>cline</span><span>codex</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>Unlimited FREE AI coding. Connect Claude Code, Codex, Cursor, Cline, Copilot, Antigravity to FREE Claude/GPT/Gemini via 40+ providers. Auto-fallback, RTK -40% tokens, never hit limits.</dd>
+            <dt>为什么关注</dt><dd>AI 应用层热度高，项目可能代表新的产品形态或工程实践。</dd>
+            <dt>适合谁看</dt><dd>AI Agent、工程效能、自动化工具链团队。</dd>
+            <dt>风险判断</dt><dd>issue 数较高，采用前建议重点看维护节奏和关键问题。</dd>
+          </dl>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no">#19</div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/ruvnet/ruflo" target="_blank" rel="noreferrer">ruvnet/ruflo</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#19<small>+20,156</small></span></div>
+            </div>
+            <div class="growth">+20,156 stars</div>
+          </div>
+          <p class="desc">🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features enterprise-grade architecture, self-learning swarm intelligence, …</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <dl>
+            <dt>项目定位</dt><dd>🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features enterprise-grade architecture, self-learning swarm intelligence, …</dd>
+            <dt>为什么关注</dt><dd>Agent 生态仍在高速演进，这个项目提供了可复用的能力、框架或基础设施。</dd>
+            <dt>适合谁看</dt><dd>AI Agent、工程效能、自动化工具链团队。</dd>
+            <dt>风险判断</dt><dd>License 未标注，商用或二次分发前需要先确认授权。</dd>
+          </dl>
+        </div>
+      </article></div>
+    </section>
+  </main>
+  <footer>Generated by Codex github-trending-report skill.</footer>
+  <script>
+    const buttons = Array.from(document.querySelectorAll('.tab'));
+    const panels = Array.from(document.querySelectorAll('.period-panel'));
+    function showPeriod(period, updateHash = true) {
+      buttons.forEach(button => button.classList.toggle('active', button.dataset.period === period));
+      panels.forEach(panel => panel.classList.toggle('active', panel.dataset.period === period));
+      if (updateHash) history.replaceState(null, '', '#' + period);
+    }
+    buttons.forEach(button => button.addEventListener('click', () => showPeriod(button.dataset.period)));
+    const initial = location.hash.replace('#', '');
+    if (['daily', 'weekly', 'monthly'].includes(initial)) showPeriod(initial, false);
+  </script>
+</body>
+</html>

@@ -1,0 +1,1326 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Github GitHub 热门仓库日报 2026-06-01</title>
+  <style>
+    :root { color-scheme: light; --bg: #f7f9fc; --panel: #fff; --text: #0f172a; --muted: #475569; --soft: #64748b; --line: #d9e2ef; --ink: #08111f; --daily: #1e40af; --weekly: #047857; --monthly: #b45309; --hot: #b42318; --amber: #f59e0b; --shadow: 0 20px 60px rgba(15,23,42,.08); }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: radial-gradient(circle at top left, #eaf1ff 0, transparent 31rem), linear-gradient(180deg, #f8fbff 0, var(--bg) 34rem); color: var(--text); line-height: 1.55; }
+    header { background: linear-gradient(135deg, #08111f 0%, #102a56 58%, #173b7b 100%); color: #fff; padding: 38px 20px 34px; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .wrap { max-width: 1120px; margin: 0 auto; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 14px; color: #bfdbfe; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 5px rgba(245,158,11,.16); }
+    h1 { margin: 0 0 12px; max-width: 780px; font-size: 36px; line-height: 1.12; letter-spacing: 0; }
+    .subtitle { margin: 0; max-width: 820px; color: #d7e3f7; }
+    main { padding: 28px 20px 52px; }
+    h2 { font-size: 24px; margin: 0 0 5px; letter-spacing: 0; }
+    .notice { border: 1px solid #f2d6a2; border-left: 4px solid var(--amber); background: #fffbeb; padding: 12px 14px; border-radius: 8px; margin-bottom: 16px; color: #7c4a03; }
+    .tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 0 0 24px; position: relative; z-index: 2; }
+    .tab { appearance: none; border: 1px solid rgba(148,163,184,.34); background: rgba(255,255,255,.94); color: var(--text); border-radius: 8px; padding: 16px 18px; text-align: left; cursor: pointer; box-shadow: var(--shadow); transition: border-color .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease; }
+    .tab:hover { border-color: #93b4e8; box-shadow: 0 22px 70px rgba(30,64,175,.13); }
+    .tab:focus-visible { outline: 3px solid rgba(59,130,246,.36); outline-offset: 3px; }
+    .tab strong, .tab span { display: block; }
+    .tab strong { font-size: 16px; }
+    .tab span { color: var(--soft); font-size: 13px; margin-top: 4px; }
+    .tab.active { color: #fff; border-color: transparent; box-shadow: 0 22px 70px rgba(30,64,175,.22); }
+    .tab.daily.active { background: var(--daily); }
+    .tab.weekly.active { background: var(--weekly); }
+    .tab.monthly.active { background: var(--monthly); }
+    .tab.active span { color: rgba(255,255,255,.82); }
+    .period-panel { display: none; }
+    .period-panel.active { display: block; }
+    .panel-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 16px; padding: 4px 2px 0; }
+    .panel-head p { margin: 0; color: var(--muted); }
+    .panel-head > span { border: 1px solid var(--line); border-radius: 999px; color: #1e3a8a; background: #fff; padding: 5px 12px; font-size: 13px; font-weight: 700; white-space: nowrap; margin-top: 4px; }
+    .rank-list { display: grid; gap: 14px; }
+    .rank-card { display: grid; grid-template-columns: 72px minmax(0, 1fr); background: rgba(255,255,255,.96); border: 1px solid var(--line); border-radius: 8px; padding: 18px; box-shadow: 0 8px 30px rgba(15,23,42,.045); position: relative; overflow: hidden; transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
+    .rank-card::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: var(--daily); opacity: .82; }
+    .weekly .rank-card::before { background: var(--weekly); }
+    .monthly .rank-card::before { background: var(--monthly); }
+    .rank-card:hover { border-color: #b9c9dd; box-shadow: 0 18px 46px rgba(15,23,42,.09); transform: translateY(-1px); }
+    .rank-card.top-1 { background: linear-gradient(180deg, #ffffff 0%, #fff9eb 100%); border-color: #f1c56f; box-shadow: 0 24px 76px rgba(245,158,11,.16); }
+    .rank-card.top-1::after { content: "FOCUS"; position: absolute; top: 14px; right: -31px; transform: rotate(35deg); background: var(--amber); color: #111827; font-size: 11px; font-weight: 900; letter-spacing: .08em; padding: 5px 34px; }
+    .rank-card.top-2, .rank-card.top-3 { border-color: #c8d7ec; }
+    .rank-no { color: var(--daily); font-weight: 900; }
+    .rank-no span { display: block; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 26px; line-height: 1; }
+    .rank-no small { display: block; margin-top: 6px; color: var(--soft); font-size: 12px; font-weight: 700; }
+    .weekly .rank-no { color: var(--weekly); }
+    .monthly .rank-no { color: var(--monthly); }
+    .rank-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 10px; }
+    h3 { margin: 0 0 9px; font-size: 21px; line-height: 1.22; }
+    h3 a { color: var(--daily); text-decoration: none; overflow-wrap: anywhere; }
+    h3 a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+    .weekly h3 a { color: var(--weekly); }
+    .monthly h3 a { color: var(--monthly); }
+    .growth { border: 1px solid #f0cc82; border-radius: 8px; color: #78350f; background: #fffbeb; padding: 8px 10px; min-width: 118px; text-align: right; white-space: nowrap; }
+    .growth span, .growth strong { display: block; }
+    .growth span { color: #92400e; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .growth strong { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 15px; margin-top: 1px; }
+    .rank-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+    .rank-badge { display: inline-flex; align-items: center; gap: 5px; border-radius: 999px; padding: 4px 9px; font-size: 12px; font-weight: 700; border: 1px solid transparent; white-space: nowrap; }
+    .rank-badge b { font-weight: 800; }
+    .rank-badge small { font-size: 11px; font-weight: 600; opacity: .86; }
+    .rank-badge.daily { color: #0f4da1; background: #edf5ff; border-color: #c9defa; }
+    .rank-badge.weekly { color: #076451; background: #eaf8f3; border-color: #bfe7da; }
+    .rank-badge.monthly { color: #8a3d05; background: #fff4e5; border-color: #f4d2a5; }
+    .signal { border: 1px solid #f6c6c2; border-radius: 999px; padding: 4px 9px; font-size: 12px; color: var(--hot); background: #fff4f2; font-weight: 700; }
+    .desc { margin: 0 0 13px; color: #334155; font-size: 15px; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .meta span { border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; font-size: 12px; color: #344054; background: #fbfcfe; }
+    .topics { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .topics span { background: #eef5ff; color: #1d4ed8; border: 1px solid #dbeafe; border-radius: 6px; padding: 4px 8px; font-size: 12px; }
+    .insights { display: grid; gap: 10px; }
+    .insight { border: 1px solid #e4eaf3; border-radius: 8px; background: #fbfdff; padding: 11px 12px; }
+    .insight b { display: block; color: #1e3a8a; font-size: 12px; margin-bottom: 5px; }
+    .insight p { margin: 0; color: #334155; font-size: 13px; }
+    .insight.usecase { background: #eff6ff; border-color: #c9defa; }
+    .insight.android { background: #fff7ed; border-color: #fed7aa; }
+    .insight.android b { color: #92400e; }
+    footer { padding: 20px; color: var(--muted); text-align: center; font-size: 13px; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; } }
+    @media (max-width: 760px) { .tabs { grid-template-columns: 1fr; } .rank-card { grid-template-columns: 1fr; } .rank-no { margin-bottom: 10px; } .rank-head, .panel-head { display: block; } .growth, .panel-head > span { display: inline-block; margin-top: 8px; text-align: left; } }
+    @media (max-width: 640px) { h1 { font-size: 27px; } main { padding-left: 14px; padding-right: 14px; } .rank-card { padding: 15px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">GitHub Trending Intelligence</div>
+      <h1>Github GitHub 热门仓库日报 2026-06-01</h1>
+      <p class="subtitle">生成时间：2026/06/01 09:07（Asia/Shanghai） · 去重 44 个唯一仓库，重复 7 个 · 数据源 GitHub Trending</p>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="notice">daily 仅解析到 15 个有效仓库；weekly 仅解析到 19 个有效仓库；monthly 仅解析到 17 个有效仓库；部分仓库详情补充失败，已使用 Trending 页面字段兜底</div>
+    <div class="tabs" role="tablist" aria-label="GitHub Trending 榜单切换"><button class="tab daily active" type="button" data-period="daily">
+    <strong>Daily Top 20</strong>
+    <span>15</span>
+  </button><button class="tab weekly" type="button" data-period="weekly">
+    <strong>Weekly Top 20</strong>
+    <span>19</span>
+  </button><button class="tab monthly" type="button" data-period="monthly">
+    <strong>Monthly Top 20</strong>
+    <span>17</span>
+  </button></div>
+    <section class="period-panel daily active" id="daily" data-period="daily">
+      <div class="panel-head">
+        <div>
+          <h2>Daily Top 20</h2>
+          <p>过去一天增长最快，适合发现突然冒头的新项目。</p>
+        </div>
+        <span>15 个仓库</span>
+      </div>
+      <div class="rank-list"><article class="rank-card top-1">
+        <div class="rank-no"><span>#1</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/harry0703/MoneyPrinterTurbo" target="_blank" rel="noreferrer">harry0703/MoneyPrinterTurbo</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#1<small>+1,937</small></span><span class="rank-badge weekly"><b>周榜</b>#1<small>+15,955</small></span><span class="rank-badge monthly"><b>月榜</b>#11<small>+16,993</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+1,937 stars</strong></div>
+          </div>
+          <p class="desc">利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>74,219 stars</span>
+            <span>10,589 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>ai</span><span>automation</span><span>chatgpt</span><span>moviepy</span><span>python</span><span>shortvideo</span><span>tiktok</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>harry0703/MoneyPrinterTurbo 主要用来提供命令行或终端界面，把能力变成脚本和自动化入口、处理浏览器自动化、网页行为模拟、端到端验证或反检测执行环境、封装图片、视频、语音或生成式 AI 内容生产链路。它解决的核心问题是：降低工具集成成本，让能力可以进入 CI、脚手架和本地开发流程；解决网页自动化不稳定、真实环境难模拟、回归验证依赖人工的问题；把模型调用、任务状态、失败重试和结果预览从零散能力做成产品化流程。结合当前项目材料看，MoneyPrinterTurbo 💸 简体中文 English العربية 只需提供一个视频 主题 或 关键词 ，就可以全自动生成视频文案、视频素材、视频字幕、视频背景音乐，然后合成一个高清的短视频。 Web界面 docs/webui.jpg API界面 docs/api.jpg 功能特性 🎯 - x 完整的 MVC架构 ，代码 结构清晰 ，易于维护，支持 API 和 Web界面 - x 支持视频文案 AI自动生成 ，也可以 自定义文案 - x 支持多种 高清视频 尺寸 - x 竖屏 9:16， 108…</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，harry0703/MoneyPrinterTurbo 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：借鉴其 CLI 设计，把构建、Lint、截图测试、依赖检查、发版前校验封装为 Android 团队命令；迁移到 Android 场景时，可借鉴自动化验证思路，用于 WebView、H5 容器、深链和端到端回归检查；可映射到 Android 的上传/轮询/后台任务、生成进度、媒体缓存、播放器预览和失败重试体验。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card top-2">
+        <div class="rank-no"><span>#2</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/microsoft/markitdown" target="_blank" rel="noreferrer">microsoft/markitdown</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#2<small>+2,798</small></span><span class="rank-badge weekly"><b>周榜</b>#6<small>+9,353</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+2,798 stars</strong></div>
+          </div>
+          <p class="desc">Python tool for converting files and office documents to Markdown.</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>134,997 stars</span>
+            <span>9,230 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>autogen</span><span>autogen-extension</span><span>langchain</span><span>markdown</span><span>microsoft-office</span><span>openai</span><span>pdf</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>microsoft/markitdown 当前公开材料提供的信息有限，但可以先把它视为一个值得观察的开源实现：它可能在降低使用门槛、封装复杂能力、提升自动化程度或提供开源替代方案。建议重点阅读 README 的快速开始、核心架构、examples 和 issue，再判断它是可直接落地的工具、可参考的工程实现，还是只适合趋势观察。当前材料摘要：MarkItDown PyPI https://img.shields.io/pypi/v/markitdown.svg https://pypi.org/project/markitdown/ PyPI - Downloads https://img.shields.io/pypi/dd/markitdown Built by AutoGen Team https://img.shields.io/badge/Built%20by-AutoGen%20Team-blue https://github.com/m…</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>microsoft/markitdown 和 Android 的直接关联暂时不强，建议把它当作工程实践样本来读：看它如何拆分模块、组织文档、设计配置、处理错误、写测试、做 CI 和维护 examples。对你的提升方式是提炼可迁移做法，再转成 Android 团队规范，例如模块边界说明、组件模板、Gradle 检查任务、发版前清单、AI Code Review 规则或技术调研模板；如果读完 README 后仍找不到和当前业务的交集，就把它保留为趋势观察即可。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card top-3">
+        <div class="rank-no"><span>#3</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/D4Vinci/Scrapling" target="_blank" rel="noreferrer">D4Vinci/Scrapling</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#3<small>+606</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+606 stars</strong></div>
+          </div>
+          <p class="desc">🕷️ An adaptive Web Scraping framework that handles everything from a single request to a full-scale crawl!</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>56,636 stars</span>
+            <span>5,491 forks</span>
+            <span>BSD-3-Clause</span>
+          </div>
+          <div class="topics"><span>ai</span><span>ai-scraping</span><span>automation</span><span>crawler</span><span>crawling</span><span>crawling-python</span><span>data</span><span>data-extraction</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>D4Vinci/Scrapling 主要用来提供命令行或终端界面，把能力变成脚本和自动化入口、处理浏览器自动化、网页行为模拟、端到端验证或反检测执行环境、提供运行时、框架、类型检查、构建或开发者工具能力。它解决的核心问题是：降低工具集成成本，让能力可以进入 CI、脚手架和本地开发流程；解决网页自动化不稳定、真实环境难模拟、回归验证依赖人工的问题；提升工程反馈速度、代码质量、增量检查和开发体验。结合当前项目材料看，Effortless Web Scraping for the Modern Web العربيه Español Português Brasil Français Deutsch 简体中文 日本語 Русский 한국어 Selection methods &amp;middot; Fetchers &amp;middot; Spiders &amp;middot; Proxy Rotation &amp;middot; CLI &amp;middot; MCP Scrapling is an adaptive Web Scraping fram…</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，D4Vinci/Scrapling 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：借鉴其 CLI 设计，把构建、Lint、截图测试、依赖检查、发版前校验封装为 Android 团队命令；迁移到 Android 场景时，可借鉴自动化验证思路，用于 WebView、H5 容器、深链和端到端回归检查；可借鉴到 Gradle 插件、Lint 规则、模块依赖治理、构建缓存、代码生成和 CI 质量门禁。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#4</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/nesquena/hermes-webui" target="_blank" rel="noreferrer">nesquena/hermes-webui</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#4<small>+357</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+357 stars</strong></div>
+          </div>
+          <p class="desc">Hermes WebUI: The best way to use Hermes Agent from the web or from your phone!</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>9,986 stars</span>
+            <span>1,371 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>agent</span><span>ai-agents</span><span>hermes</span><span>hermes-agent</span><span>nous-research</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>nesquena/hermes-webui 主要用来沉淀和检索代码库上下文、历史知识或长期记忆、让 AI Agent 执行跨步骤任务、调用工具并编排复杂工作流、提供命令行或终端界面，把能力变成脚本和自动化入口。它解决的核心问题是：减少反复解释业务背景、模块边界和历史决策的成本；把人工拆任务、查资料、改代码、验证结果的链路自动化；降低工具集成成本，让能力可以进入 CI、脚手架和本地开发流程。结合当前项目材料看，Hermes Web UI Hermes Agent https://hermes-agent.nousresearch.com/ is a sophisticated autonomous agent that lives on your server, accessed via a terminal or messaging apps, that remembers what it learns and gets more capable the longer it runs. Hermes WebUI is…</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，nesquena/hermes-webui 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：为 Android 项目建立模块知识库，例如页面路由、网络接口、缓存策略、埋点规范和历史 PR 决策；用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划；借鉴其 CLI 设计，把构建、Lint、截图测试、依赖检查、发版前校验封装为 Android 团队命令。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#5</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/EveryInc/compound-engineering-plugin" target="_blank" rel="noreferrer">EveryInc/compound-engineering-plugin</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#5<small>+251</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+251 stars</strong></div>
+          </div>
+          <p class="desc">Official Compound Engineering plugin for Claude Code, Codex, Cursor, and more</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>18,707 stars</span>
+            <span>1,408 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>compound</span><span>engineering</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>EveryInc/compound-engineering-plugin 主要用来把工程经验、提示词、检查清单或工作流封装成可复用的 Agent Skill、让 AI Agent 执行跨步骤任务、调用工具并编排复杂工作流、提供运行时、框架、类型检查、构建或开发者工具能力。它解决的核心问题是：让团队经验从口头约定变成可执行、可复查、可迁移的规则；把人工拆任务、查资料、改代码、验证结果的链路自动化；提升工程反馈速度、代码质量、增量检查和开发体验。结合当前项目材料看，Compound Engineering Build Status https://github.com/EveryInc/compound-engineering-plugin/actions/workflows/ci.yml/badge.svg https://github.com/EveryInc/compound-engineering-plugin/actions/workflows/ci.yml npm https://img.shields.io/npm/v/@every-env/compound-…</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，EveryInc/compound-engineering-plugin 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：沉淀 Android 团队规范，例如 Kotlin/Compose 写法、Activity/Fragment 迁移规则、Gradle 检查和 PR Review 清单；用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划；可借鉴到 Gradle 插件、Lint 规则、模块依赖治理、构建缓存、代码生成和 CI 质量门禁。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#6</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/github/docs" target="_blank" rel="noreferrer">github/docs</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#6<small>+27</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+27 stars</strong></div>
+          </div>
+          <p class="desc">The open-source repo for docs.github.com</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>19,734 stars</span>
+            <span>67,287 forks</span>
+            <span>CC-BY-4.0</span>
+          </div>
+          <div class="topics"><span>docs</span><span>works-with-codespaces</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>github/docs 主要用来提供可自托管或开源替代方案，把某类 SaaS 能力变成可控部署。它解决的核心问题是：降低平台锁定、隐私合规和长期成本风险。结合当前项目材料看，GitHub Docs Welcome to GitHub Docs GitHub’s documentation is open source, meaning anyone from inside or outside the company can contribute. For full contributing guidelines, visit our contributing guide https://docs.github.com/en/contributing . Quick links by…</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，github/docs 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：如果 App 依赖同类后端能力，可参考其 API、权限模型、同步策略和离线/弱网体验设计。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#7</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/OpenBMB/VoxCPM" target="_blank" rel="noreferrer">OpenBMB/VoxCPM</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#7<small>+635</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+635 stars</strong></div>
+          </div>
+          <p class="desc">VoxCPM2: Tokenizer-Free TTS for Multilingual Speech Generation, Creative Voice Design, and True-to-Life Cloning</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>23,539 stars</span>
+            <span>2,718 forks</span>
+            <span>Apache-2.0</span>
+          </div>
+          <div class="topics"><span>audio</span><span>deeplearning</span><span>minicpm</span><span>multilingual</span><span>python</span><span>pytorch</span><span>speech</span><span>speech-synthesis</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>OpenBMB/VoxCPM 主要用来封装图片、视频、语音或生成式 AI 内容生产链路。它解决的核心问题是：把模型调用、任务状态、失败重试和结果预览从零散能力做成产品化流程。结合当前项目材料看，VoxCPM2: Tokenizer-Free TTS for Multilingual Speech Generation, Creative Voice Design, and True-to-Life Cloning English 中文 👋 Join our community for discussion and support Feishu &amp;nbsp; &amp;nbsp; Discord VoxCPM is a tokenizer-free Text-to-Speech system that dire…</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，OpenBMB/VoxCPM 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：可映射到 Android 的上传/轮询/后台任务、生成进度、媒体缓存、播放器预览和失败重试体验。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#8</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/revfactory/harness" target="_blank" rel="noreferrer">revfactory/harness</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#8<small>+323</small></span><span class="rank-badge weekly"><b>周榜</b>#12<small>+957</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+323 stars</strong></div>
+          </div>
+          <p class="desc">A meta-skill that designs domain-specific agent teams, defines specialized agents, and generates the skills they use.</p>
+          <div class="meta">
+            <span>HTML</span>
+            <span>4,599 stars</span>
+            <span>650 forks</span>
+            <span>Apache-2.0</span>
+          </div>
+          <div class="topics"><span>claude-code</span><span>claude-code-plugin</span><span>harness</span><span>harness-engineering</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>revfactory/harness 主要用来把工程经验、提示词、检查清单或工作流封装成可复用的 Agent Skill、让 AI Agent 执行跨步骤任务、调用工具并编排复杂工作流、提供运行时、框架、类型检查、构建或开发者工具能力。它解决的核心问题是：让团队经验从口头约定变成可执行、可复查、可迁移的规则；把人工拆任务、查资料、改代码、验证结果的链路自动化；提升工程反馈速度、代码质量、增量检查和开发体验。结合当前项目材料看，Harness — The Team-Architecture Factory for Claude Code English 한국어 README KO.md 日本語 README JA.md Harness is a team-architecture factory for Claude Code. Say &quot;build a harness for this project&quot; English or &quot;하네스 구성해줘&quot; 한국어 or &quot;ハーネスを構成して&quot; 日本語 , and the plugin turn…</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，revfactory/harness 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：沉淀 Android 团队规范，例如 Kotlin/Compose 写法、Activity/Fragment 迁移规则、Gradle 检查和 PR Review 清单；用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划；可借鉴到 Gradle 插件、Lint 规则、模块依赖治理、构建缓存、代码生成和 CI 质量门禁。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#9</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/FareedKhan-dev/train-llm-from-scratch" target="_blank" rel="noreferrer">FareedKhan-dev/train-llm-from-scratch</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#9<small>+626</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+626 stars</strong></div>
+          </div>
+          <p class="desc">A straightforward method for training your LLM, from downloading data to generating text.</p>
+          <div class="meta">
+            <span>Jupyter Notebook</span>
+            <span>2,963 stars</span>
+            <span>443 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>gemini</span><span>large-language-models</span><span>llm</span><span>openai</span><span>training</span><span>transformers</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>FareedKhan-dev/train-llm-from-scratch 主要用来封装图片、视频、语音或生成式 AI 内容生产链路。它解决的核心问题是：把模型调用、任务状态、失败重试和结果预览从零散能力做成产品化流程。结合当前项目材料看，main image https://cdn-images-1.medium.com/max/5200/1 r99Hq3YBd5FTTWLNYKKvPw.png Train LLM From Scratch Python https://img.shields.io/badge/Python-3.8%2B-blue License https://img.shields.io/badge/License-MIT-green Contributions https://img.shields.io/badge/Co…</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，FareedKhan-dev/train-llm-from-scratch 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：可映射到 Android 的上传/轮询/后台任务、生成进度、媒体缓存、播放器预览和失败重试体验。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#10</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/supermemoryai/supermemory" target="_blank" rel="noreferrer">supermemoryai/supermemory</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#10<small>+264</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+264 stars</strong></div>
+          </div>
+          <p class="desc">Memory engine and app that is extremely fast, scalable. The Memory API for the AI era.</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>23,343 stars</span>
+            <span>2,107 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>agent-memory</span><span>ai-memory</span><span>cloudflare-kv</span><span>cloudflare-pages</span><span>cloudflare-workers</span><span>drizzle-orm</span><span>memory</span><span>postgres</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>supermemoryai/supermemory 主要用来沉淀和检索代码库上下文、历史知识或长期记忆、让 AI Agent 执行跨步骤任务、调用工具并编排复杂工作流、组织金融、行情、分析看板或复杂业务指标。它解决的核心问题是：减少反复解释业务背景、模块边界和历史决策的成本；把人工拆任务、查资料、改代码、验证结果的链路自动化；把多源数据、趋势解释、筛选条件和决策辅助放进可读的产品界面。结合当前项目材料看，State-of-the-art memory and context engine for AI. And yes - you can use it as a company/personal brain. Docs · Quickstart · Dashboard · Discord --- Supermemory is the memory and context layer for AI. 1 on LongMemEval https://github.com/xiaowu0162/LongMemEval…</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，supermemoryai/supermemory 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：为 Android 项目建立模块知识库，例如页面路由、网络接口、缓存策略、埋点规范和历史 PR 决策；用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划；适合参考移动端数据看板的信息层级、列表卡片、图表交互、离线缓存和异常提示。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#11</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/Crosstalk-Solutions/project-nomad" target="_blank" rel="noreferrer">Crosstalk-Solutions/project-nomad</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#11<small>+374</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+374 stars</strong></div>
+          </div>
+          <p class="desc">Project N.O.M.A.D, is a self-contained, offline survival computer packed with critical tools, knowledge, and AI to keep you informed and empowered—anytime, anywhere.</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>27,734 stars</span>
+            <span>2,712 forks</span>
+            <span>Apache-2.0</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Crosstalk-Solutions/project-nomad 当前公开材料提供的信息有限，但可以先把它视为一个值得观察的开源实现：它可能在降低使用门槛、封装复杂能力、提升自动化程度或提供开源替代方案。建议重点阅读 README 的快速开始、核心架构、examples 和 issue，再判断它是可直接落地的工具、可参考的工程实现，还是只适合趋势观察。当前材料摘要：Project N.O.M.A.D, is a self-contained, offline survival computer packed with critical tools, knowledge, and AI to keep you informed and empowered—anytime, anywhere.</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>Crosstalk-Solutions/project-nomad 和 Android 的直接关联暂时不强，建议把它当作工程实践样本来读：看它如何拆分模块、组织文档、设计配置、处理错误、写测试、做 CI 和维护 examples。对你的提升方式是提炼可迁移做法，再转成 Android 团队规范，例如模块边界说明、组件模板、Gradle 检查任务、发版前清单、AI Code Review 规则或技术调研模板；如果读完 README 后仍找不到和当前业务的交集，就把它保留为趋势观察即可。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#12</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/anthropics/claude-code" target="_blank" rel="noreferrer">anthropics/claude-code</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#12<small>+489</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+489 stars</strong></div>
+          </div>
+          <p class="desc">Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>128,913 stars</span>
+            <span>20,999 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>anthropics/claude-code 主要用来让 AI Agent 执行跨步骤任务、调用工具并编排复杂工作流、提供命令行或终端界面，把能力变成脚本和自动化入口。它解决的核心问题是：把人工拆任务、查资料、改代码、验证结果的链路自动化；降低工具集成成本，让能力可以进入 CI、脚手架和本地开发流程。结合当前项目材料看，Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，anthropics/claude-code 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划；借鉴其 CLI 设计，把构建、Lint、截图测试、依赖检查、发版前校验封装为 Android 团队命令。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#13</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/nicobailon/pi-subagents" target="_blank" rel="noreferrer">nicobailon/pi-subagents</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#13<small>+69</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+69 stars</strong></div>
+          </div>
+          <p class="desc">Pi extension for async subagent delegation with truncation, artifacts, and session sharing</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>1,847 stars</span>
+            <span>257 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>nicobailon/pi-subagents 主要用来让 AI Agent 执行跨步骤任务、调用工具并编排复杂工作流。它解决的核心问题是：把人工拆任务、查资料、改代码、验证结果的链路自动化。结合当前项目材料看，Pi extension for async subagent delegation with truncation, artifacts, and session sharing</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，nicobailon/pi-subagents 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#14</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/emmabostian/developer-portfolios" target="_blank" rel="noreferrer">emmabostian/developer-portfolios</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#14<small>+73</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+73 stars</strong></div>
+          </div>
+          <p class="desc">A list of developer portfolios for your inspiration</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>23,372 stars</span>
+            <span>4,611 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>emmabostian/developer-portfolios 当前公开材料提供的信息有限，但可以先把它视为一个值得观察的开源实现：它可能在降低使用门槛、封装复杂能力、提升自动化程度或提供开源替代方案。建议重点阅读 README 的快速开始、核心架构、examples 和 issue，再判断它是可直接落地的工具、可参考的工程实现，还是只适合趋势观察。当前材料摘要：A list of developer portfolios for your inspiration</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>emmabostian/developer-portfolios 和 Android 的直接关联暂时不强，建议把它当作工程实践样本来读：看它如何拆分模块、组织文档、设计配置、处理错误、写测试、做 CI 和维护 examples。对你的提升方式是提炼可迁移做法，再转成 Android 团队规范，例如模块边界说明、组件模板、Gradle 检查任务、发版前清单、AI Code Review 规则或技术调研模板；如果读完 README 后仍找不到和当前业务的交集，就把它保留为趋势观察即可。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#15</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/codecrafters-io/build-your-own-x" target="_blank" rel="noreferrer">codecrafters-io/build-your-own-x</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#15<small>+1,158</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+1,158 stars</strong></div>
+          </div>
+          <p class="desc">Master programming by recreating your favorite technologies from scratch.</p>
+          <div class="meta">
+            <span>Markdown</span>
+            <span>509,414 stars</span>
+            <span>48,317 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>awesome-list</span><span>free</span><span>programming</span><span>tutorial-code</span><span>tutorial-exercises</span><span>tutorials</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>codecrafters-io/build-your-own-x 主要用来提供运行时、框架、类型检查、构建或开发者工具能力。它解决的核心问题是：提升工程反馈速度、代码质量、增量检查和开发体验。结合当前项目材料看，Master programming by recreating your favorite technologies from scratch.</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，codecrafters-io/build-your-own-x 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：可借鉴到 Gradle 插件、Lint 规则、模块依赖治理、构建缓存、代码生成和 CI 质量门禁。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article></div>
+    </section>
+<section class="period-panel weekly" id="weekly" data-period="weekly">
+      <div class="panel-head">
+        <div>
+          <h2>Weekly Top 20</h2>
+          <p>过去一周持续升温，能过滤掉一部分短时波动。</p>
+        </div>
+        <span>19 个仓库</span>
+      </div>
+      <div class="rank-list"><article class="rank-card top-1">
+        <div class="rank-no"><span>#1</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/harry0703/MoneyPrinterTurbo" target="_blank" rel="noreferrer">harry0703/MoneyPrinterTurbo</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#1<small>+1,937</small></span><span class="rank-badge weekly"><b>周榜</b>#1<small>+15,955</small></span><span class="rank-badge monthly"><b>月榜</b>#11<small>+16,993</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+15,955 stars</strong></div>
+          </div>
+          <p class="desc">利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>74,219 stars</span>
+            <span>10,589 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>ai</span><span>automation</span><span>chatgpt</span><span>moviepy</span><span>python</span><span>shortvideo</span><span>tiktok</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>harry0703/MoneyPrinterTurbo 主要用来提供命令行或终端界面，把能力变成脚本和自动化入口、处理浏览器自动化、网页行为模拟、端到端验证或反检测执行环境、封装图片、视频、语音或生成式 AI 内容生产链路。它解决的核心问题是：降低工具集成成本，让能力可以进入 CI、脚手架和本地开发流程；解决网页自动化不稳定、真实环境难模拟、回归验证依赖人工的问题；把模型调用、任务状态、失败重试和结果预览从零散能力做成产品化流程。结合当前项目材料看，MoneyPrinterTurbo 💸 简体中文 English العربية 只需提供一个视频 主题 或 关键词 ，就可以全自动生成视频文案、视频素材、视频字幕、视频背景音乐，然后合成一个高清的短视频。 Web界面 docs/webui.jpg API界面 docs/api.jpg 功能特性 🎯 - x 完整的 MVC架构 ，代码 结构清晰 ，易于维护，支持 API 和 Web界面 - x 支持视频文案 AI自动生成 ，也可以 自定义文案 - x 支持多种 高清视频 尺寸 - x 竖屏 9:16， 108…</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，harry0703/MoneyPrinterTurbo 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：借鉴其 CLI 设计，把构建、Lint、截图测试、依赖检查、发版前校验封装为 Android 团队命令；迁移到 Android 场景时，可借鉴自动化验证思路，用于 WebView、H5 容器、深链和端到端回归检查；可映射到 Android 的上传/轮询/后台任务、生成进度、媒体缓存、播放器预览和失败重试体验。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card top-2">
+        <div class="rank-no"><span>#2</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/Lum1104/Understand-Anything" target="_blank" rel="noreferrer">Lum1104/Understand-Anything</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#2<small>+22,750</small></span><span class="rank-badge monthly"><b>月榜</b>#5<small>+37,390</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+22,750 stars</strong></div>
+          </div>
+          <p class="desc">Graphs that teach &gt; graphs that impress. Turn any code into an interactive knowledge graph you can explore, search, and ask questions about. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more.</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>47,221 stars</span>
+            <span>3,835 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>antigravity-skills</span><span>business-knowledge</span><span>claude-code</span><span>claude-skills</span><span>codebase-analysis</span><span>codex</span><span>codex-skills</span><span>developer-tools-ai-agent</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Lum1104/Understand-Anything 主要用来沉淀和检索代码库上下文、历史知识或长期记忆、把工程经验、提示词、检查清单或工作流封装成可复用的 Agent Skill、让 AI Agent 执行跨步骤任务、调用工具并编排复杂工作流。它解决的核心问题是：减少反复解释业务背景、模块边界和历史决策的成本；让团队经验从口头约定变成可执行、可复查、可迁移的规则；把人工拆任务、查资料、改代码、验证结果的链路自动化。结合当前项目材料看，Graphs that teach &gt; graphs that impress. Turn any code into an interactive knowledge graph you can explore, search, and ask questions about. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more.</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，Lum1104/Understand-Anything 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：为 Android 项目建立模块知识库，例如页面路由、网络接口、缓存策略、埋点规范和历史 PR 决策；沉淀 Android 团队规范，例如 Kotlin/Compose 写法、Activity/Fragment 迁移规则、Gradle 检查和 PR Review 清单；用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card top-3">
+        <div class="rank-no"><span>#3</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/anthropics/knowledge-work-plugins" target="_blank" rel="noreferrer">anthropics/knowledge-work-plugins</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#3<small>+4,944</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+4,944 stars</strong></div>
+          </div>
+          <p class="desc">Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>anthropics/knowledge-work-plugins 主要用来提供可自托管或开源替代方案，把某类 SaaS 能力变成可控部署。它解决的核心问题是：降低平台锁定、隐私合规和长期成本风险。结合当前项目材料看，Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，anthropics/knowledge-work-plugins 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：如果 App 依赖同类后端能力，可参考其 API、权限模型、同步策略和离线/弱网体验设计。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#4</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/rohitg00/ai-engineering-from-scratch" target="_blank" rel="noreferrer">rohitg00/ai-engineering-from-scratch</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#4<small>+10,586</small></span><span class="rank-badge monthly"><b>月榜</b>#9<small>+19,640</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+10,586 stars</strong></div>
+          </div>
+          <p class="desc">Learn it. Build it. Ship it for others.</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>rohitg00/ai-engineering-from-scratch 主要用来提供运行时、框架、类型检查、构建或开发者工具能力。它解决的核心问题是：提升工程反馈速度、代码质量、增量检查和开发体验。结合当前项目材料看，Learn it. Build it. Ship it for others.</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，rohitg00/ai-engineering-from-scratch 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：可借鉴到 Gradle 插件、Lint 规则、模块依赖治理、构建缓存、代码生成和 CI 质量门禁。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#5</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/hardikpandya/stop-slop" target="_blank" rel="noreferrer">hardikpandya/stop-slop</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#5<small>+3,770</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+3,770 stars</strong></div>
+          </div>
+          <p class="desc">A skill file for removing AI tells from prose</p>
+          <div class="meta">
+            <span>未标注</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>hardikpandya/stop-slop 主要用来把工程经验、提示词、检查清单或工作流封装成可复用的 Agent Skill。它解决的核心问题是：让团队经验从口头约定变成可执行、可复查、可迁移的规则。结合当前项目材料看，A skill file for removing AI tells from prose</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，hardikpandya/stop-slop 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：沉淀 Android 团队规范，例如 Kotlin/Compose 写法、Activity/Fragment 迁移规则、Gradle 检查和 PR Review 清单。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#6</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/microsoft/markitdown" target="_blank" rel="noreferrer">microsoft/markitdown</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#2<small>+2,798</small></span><span class="rank-badge weekly"><b>周榜</b>#6<small>+9,353</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+9,353 stars</strong></div>
+          </div>
+          <p class="desc">Python tool for converting files and office documents to Markdown.</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>134,997 stars</span>
+            <span>9,230 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>autogen</span><span>autogen-extension</span><span>langchain</span><span>markdown</span><span>microsoft-office</span><span>openai</span><span>pdf</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>microsoft/markitdown 当前公开材料提供的信息有限，但可以先把它视为一个值得观察的开源实现：它可能在降低使用门槛、封装复杂能力、提升自动化程度或提供开源替代方案。建议重点阅读 README 的快速开始、核心架构、examples 和 issue，再判断它是可直接落地的工具、可参考的工程实现，还是只适合趋势观察。当前材料摘要：MarkItDown PyPI https://img.shields.io/pypi/v/markitdown.svg https://pypi.org/project/markitdown/ PyPI - Downloads https://img.shields.io/pypi/dd/markitdown Built by AutoGen Team https://img.shields.io/badge/Built%20by-AutoGen%20Team-blue https://github.com/m…</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>microsoft/markitdown 和 Android 的直接关联暂时不强，建议把它当作工程实践样本来读：看它如何拆分模块、组织文档、设计配置、处理错误、写测试、做 CI 和维护 examples。对你的提升方式是提炼可迁移做法，再转成 Android 团队规范，例如模块边界说明、组件模板、Gradle 检查任务、发版前清单、AI Code Review 规则或技术调研模板；如果读完 README 后仍找不到和当前业务的交集，就把它保留为趋势观察即可。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#7</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/Leonxlnx/taste-skill" target="_blank" rel="noreferrer">Leonxlnx/taste-skill</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#7<small>+10,813</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+10,813 stars</strong></div>
+          </div>
+          <p class="desc">Taste-Skill - gives your AI good taste. stops the AI from generating boring, generic slop</p>
+          <div class="meta">
+            <span>Shell</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Leonxlnx/taste-skill 主要用来把工程经验、提示词、检查清单或工作流封装成可复用的 Agent Skill。它解决的核心问题是：让团队经验从口头约定变成可执行、可复查、可迁移的规则。结合当前项目材料看，Taste-Skill - gives your AI good taste. stops the AI from generating boring, generic slop</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，Leonxlnx/taste-skill 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：沉淀 Android 团队规范，例如 Kotlin/Compose 写法、Activity/Fragment 迁移规则、Gradle 检查和 PR Review 清单。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#8</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/colbymchenry/codegraph" target="_blank" rel="noreferrer">colbymchenry/codegraph</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#8<small>+13,925</small></span><span class="rank-badge monthly"><b>月榜</b>#1<small>+34,446</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+13,925 stars</strong></div>
+          </div>
+          <p class="desc">Pre-indexed code knowledge graph for Claude Code, Codex, Gemini, Cursor, OpenCode, AntiGravity, Kiro, and Hermes Agent — fewer tokens, fewer tool calls, 100% local</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>colbymchenry/codegraph 主要用来沉淀和检索代码库上下文、历史知识或长期记忆、让 AI Agent 执行跨步骤任务、调用工具并编排复杂工作流。它解决的核心问题是：减少反复解释业务背景、模块边界和历史决策的成本；把人工拆任务、查资料、改代码、验证结果的链路自动化。结合当前项目材料看，Pre-indexed code knowledge graph for Claude Code, Codex, Gemini, Cursor, OpenCode, AntiGravity, Kiro, and Hermes Agent — fewer tokens, fewer tool calls, 100% local</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，colbymchenry/codegraph 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：为 Android 项目建立模块知识库，例如页面路由、网络接口、缓存策略、埋点规范和历史 PR 决策；用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#9</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/mukul975/Anthropic-Cybersecurity-Skills" target="_blank" rel="noreferrer">mukul975/Anthropic-Cybersecurity-Skills</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#9<small>+4,896</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+4,896 stars</strong></div>
+          </div>
+          <p class="desc">754 structured cybersecurity skills for AI agents · Mapped to 5 frameworks: MITRE ATT&amp;CK, NIST CSF 2.0, MITRE ATLAS, D3FEND &amp; NIST AI RMF · agentskills.io standard · Works with Claude Code, GitHub Copilot, Codex CLI, Cursor, Gemini CLI &amp; 2…</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>mukul975/Anthropic-Cybersecurity-Skills 主要用来把工程经验、提示词、检查清单或工作流封装成可复用的 Agent Skill、让 AI Agent 执行跨步骤任务、调用工具并编排复杂工作流、提供命令行或终端界面，把能力变成脚本和自动化入口。它解决的核心问题是：让团队经验从口头约定变成可执行、可复查、可迁移的规则；把人工拆任务、查资料、改代码、验证结果的链路自动化；降低工具集成成本，让能力可以进入 CI、脚手架和本地开发流程。结合当前项目材料看，754 structured cybersecurity skills for AI agents · Mapped to 5 frameworks: MITRE ATT&amp;CK, NIST CSF 2.0, MITRE ATLAS, D3FEND &amp; NIST AI RMF · agentskills.io standard · Works with Claude Code, GitHub Copilot, Codex CLI, Cursor, Gemini CLI &amp; 20+ platforms · 26 se…</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，mukul975/Anthropic-Cybersecurity-Skills 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：沉淀 Android 团队规范，例如 Kotlin/Compose 写法、Activity/Fragment 迁移规则、Gradle 检查和 PR Review 清单；用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划；借鉴其 CLI 设计，把构建、Lint、截图测试、依赖检查、发版前校验封装为 Android 团队命令。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#10</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/affaan-m/ECC" target="_blank" rel="noreferrer">affaan-m/ECC</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#10<small>+10,473</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+10,473 stars</strong></div>
+          </div>
+          <p class="desc">The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.</p>
+          <div class="meta">
+            <span>JavaScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>affaan-m/ECC 主要用来沉淀和检索代码库上下文、历史知识或长期记忆、把工程经验、提示词、检查清单或工作流封装成可复用的 Agent Skill、让 AI Agent 执行跨步骤任务、调用工具并编排复杂工作流。它解决的核心问题是：减少反复解释业务背景、模块边界和历史决策的成本；让团队经验从口头约定变成可执行、可复查、可迁移的规则；把人工拆任务、查资料、改代码、验证结果的链路自动化。结合当前项目材料看，The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，affaan-m/ECC 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：为 Android 项目建立模块知识库，例如页面路由、网络接口、缓存策略、埋点规范和历史 PR 决策；沉淀 Android 团队规范，例如 Kotlin/Compose 写法、Activity/Fragment 迁移规则、Gradle 检查和 PR Review 清单；用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#11</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/cursor/plugins" target="_blank" rel="noreferrer">cursor/plugins</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#11<small>+882</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+882 stars</strong></div>
+          </div>
+          <p class="desc">Cursor plugin specification and official plugins</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>cursor/plugins 当前公开材料提供的信息有限，但可以先把它视为一个值得观察的开源实现：它可能在降低使用门槛、封装复杂能力、提升自动化程度或提供开源替代方案。建议重点阅读 README 的快速开始、核心架构、examples 和 issue，再判断它是可直接落地的工具、可参考的工程实现，还是只适合趋势观察。当前材料摘要：Cursor plugin specification and official plugins</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>cursor/plugins 和 Android 的直接关联暂时不强，建议把它当作工程实践样本来读：看它如何拆分模块、组织文档、设计配置、处理错误、写测试、做 CI 和维护 examples。对你的提升方式是提炼可迁移做法，再转成 Android 团队规范，例如模块边界说明、组件模板、Gradle 检查任务、发版前清单、AI Code Review 规则或技术调研模板；如果读完 README 后仍找不到和当前业务的交集，就把它保留为趋势观察即可。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#12</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/revfactory/harness" target="_blank" rel="noreferrer">revfactory/harness</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#8<small>+323</small></span><span class="rank-badge weekly"><b>周榜</b>#12<small>+957</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+957 stars</strong></div>
+          </div>
+          <p class="desc">A meta-skill that designs domain-specific agent teams, defines specialized agents, and generates the skills they use.</p>
+          <div class="meta">
+            <span>HTML</span>
+            <span>4,599 stars</span>
+            <span>650 forks</span>
+            <span>Apache-2.0</span>
+          </div>
+          <div class="topics"><span>claude-code</span><span>claude-code-plugin</span><span>harness</span><span>harness-engineering</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>revfactory/harness 主要用来把工程经验、提示词、检查清单或工作流封装成可复用的 Agent Skill、让 AI Agent 执行跨步骤任务、调用工具并编排复杂工作流、提供运行时、框架、类型检查、构建或开发者工具能力。它解决的核心问题是：让团队经验从口头约定变成可执行、可复查、可迁移的规则；把人工拆任务、查资料、改代码、验证结果的链路自动化；提升工程反馈速度、代码质量、增量检查和开发体验。结合当前项目材料看，Harness — The Team-Architecture Factory for Claude Code English 한국어 README KO.md 日本語 README JA.md Harness is a team-architecture factory for Claude Code. Say &quot;build a harness for this project&quot; English or &quot;하네스 구성해줘&quot; 한국어 or &quot;ハーネスを構成して&quot; 日本語 , and the plugin turn…</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，revfactory/harness 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：沉淀 Android 团队规范，例如 Kotlin/Compose 写法、Activity/Fragment 迁移规则、Gradle 检查和 PR Review 清单；用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划；可借鉴到 Gradle 插件、Lint 规则、模块依赖治理、构建缓存、代码生成和 CI 质量门禁。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#13</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/p-e-w/heretic" target="_blank" rel="noreferrer">p-e-w/heretic</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#13<small>+1,417</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+1,417 stars</strong></div>
+          </div>
+          <p class="desc">Fully automatic censorship removal for language models</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>p-e-w/heretic 当前公开材料提供的信息有限，但可以先把它视为一个值得观察的开源实现：它可能在降低使用门槛、封装复杂能力、提升自动化程度或提供开源替代方案。建议重点阅读 README 的快速开始、核心架构、examples 和 issue，再判断它是可直接落地的工具、可参考的工程实现，还是只适合趋势观察。当前材料摘要：Fully automatic censorship removal for language models</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>p-e-w/heretic 和 Android 的直接关联暂时不强，建议把它当作工程实践样本来读：看它如何拆分模块、组织文档、设计配置、处理错误、写测试、做 CI 和维护 examples。对你的提升方式是提炼可迁移做法，再转成 Android 团队规范，例如模块边界说明、组件模板、Gradle 检查任务、发版前清单、AI Code Review 规则或技术调研模板；如果读完 README 后仍找不到和当前业务的交集，就把它保留为趋势观察即可。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#14</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/microsoft/agent-governance-toolkit" target="_blank" rel="noreferrer">microsoft/agent-governance-toolkit</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#14<small>+1,657</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+1,657 stars</strong></div>
+          </div>
+          <p class="desc">AI Agent Governance Toolkit — Policy enforcement, zero-trust identity, execution sandboxing, and reliability engineering for autonomous AI agents. Covers 10/10 OWASP Agentic Top 10.</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>microsoft/agent-governance-toolkit 主要用来让 AI Agent 执行跨步骤任务、调用工具并编排复杂工作流。它解决的核心问题是：把人工拆任务、查资料、改代码、验证结果的链路自动化。结合当前项目材料看，AI Agent Governance Toolkit — Policy enforcement, zero-trust identity, execution sandboxing, and reliability engineering for autonomous AI agents. Covers 10/10 OWASP Agentic Top 10.</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，microsoft/agent-governance-toolkit 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#15</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/Chachamaru127/claude-code-harness" target="_blank" rel="noreferrer">Chachamaru127/claude-code-harness</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#15<small>+997</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+997 stars</strong></div>
+          </div>
+          <p class="desc">Claude Code Dedicated Development Harness - Achieving High-Quality Development Through an Autonomous Plan→Work→Review Cycle</p>
+          <div class="meta">
+            <span>Shell</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Chachamaru127/claude-code-harness 主要用来让 AI Agent 执行跨步骤任务、调用工具并编排复杂工作流。它解决的核心问题是：把人工拆任务、查资料、改代码、验证结果的链路自动化。结合当前项目材料看，Claude Code Dedicated Development Harness - Achieving High-Quality Development Through an Autonomous Plan→Work→Review Cycle</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，Chachamaru127/claude-code-harness 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#16</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/dograh-hq/dograh" target="_blank" rel="noreferrer">dograh-hq/dograh</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#16<small>+1,329</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+1,329 stars</strong></div>
+          </div>
+          <p class="desc">Open source voice AI platform. Self-hosted alternative to Vapi and Retell. On Prem, BYOK across Speech to Speech or LLM/STT/TTS, with a visual workflow builder, MCP native and telephony support.</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>dograh-hq/dograh 主要用来让 AI Agent 执行跨步骤任务、调用工具并编排复杂工作流、封装图片、视频、语音或生成式 AI 内容生产链路、提供运行时、框架、类型检查、构建或开发者工具能力。它解决的核心问题是：把人工拆任务、查资料、改代码、验证结果的链路自动化；把模型调用、任务状态、失败重试和结果预览从零散能力做成产品化流程；提升工程反馈速度、代码质量、增量检查和开发体验。结合当前项目材料看，Open source voice AI platform. Self-hosted alternative to Vapi and Retell. On Prem, BYOK across Speech to Speech or LLM/STT/TTS, with a visual workflow builder, MCP native and telephony support.</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，dograh-hq/dograh 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划；可映射到 Android 的上传/轮询/后台任务、生成进度、媒体缓存、播放器预览和失败重试体验；可借鉴到 Gradle 插件、Lint 规则、模块依赖治理、构建缓存、代码生成和 CI 质量门禁。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#17</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/ogulcancelik/herdr" target="_blank" rel="noreferrer">ogulcancelik/herdr</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#17<small>+1,058</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+1,058 stars</strong></div>
+          </div>
+          <p class="desc">agent multiplexer that lives in your terminal.</p>
+          <div class="meta">
+            <span>Rust</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>ogulcancelik/herdr 主要用来让 AI Agent 执行跨步骤任务、调用工具并编排复杂工作流、提供命令行或终端界面，把能力变成脚本和自动化入口。它解决的核心问题是：把人工拆任务、查资料、改代码、验证结果的链路自动化；降低工具集成成本，让能力可以进入 CI、脚手架和本地开发流程。结合当前项目材料看，agent multiplexer that lives in your terminal.</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，ogulcancelik/herdr 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划；借鉴其 CLI 设计，把构建、Lint、截图测试、依赖检查、发版前校验封装为 Android 团队命令。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#18</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/run-llama/liteparse" target="_blank" rel="noreferrer">run-llama/liteparse</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#18<small>+3,006</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+3,006 stars</strong></div>
+          </div>
+          <p class="desc">A fast, helpful, and open-source document parser</p>
+          <div class="meta">
+            <span>Rust</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>run-llama/liteparse 当前公开材料提供的信息有限，但可以先把它视为一个值得观察的开源实现：它可能在降低使用门槛、封装复杂能力、提升自动化程度或提供开源替代方案。建议重点阅读 README 的快速开始、核心架构、examples 和 issue，再判断它是可直接落地的工具、可参考的工程实现，还是只适合趋势观察。当前材料摘要：A fast, helpful, and open-source document parser</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>run-llama/liteparse 和 Android 的直接关联暂时不强，建议把它当作工程实践样本来读：看它如何拆分模块、组织文档、设计配置、处理错误、写测试、做 CI 和维护 examples。对你的提升方式是提炼可迁移做法，再转成 Android 团队规范，例如模块边界说明、组件模板、Gradle 检查任务、发版前清单、AI Code Review 规则或技术调研模板；如果读完 README 后仍找不到和当前业务的交集，就把它保留为趋势观察即可。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#19</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/iii-hq/iii" target="_blank" rel="noreferrer">iii-hq/iii</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#19<small>+1,394</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+1,394 stars</strong></div>
+          </div>
+          <p class="desc">Effortlessly compose, extend, and observe every service in real-time for the first time ever.</p>
+          <div class="meta">
+            <span>Rust</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>iii-hq/iii 当前公开材料提供的信息有限，但可以先把它视为一个值得观察的开源实现：它可能在降低使用门槛、封装复杂能力、提升自动化程度或提供开源替代方案。建议重点阅读 README 的快速开始、核心架构、examples 和 issue，再判断它是可直接落地的工具、可参考的工程实现，还是只适合趋势观察。当前材料摘要：Effortlessly compose, extend, and observe every service in real-time for the first time ever.</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>这个项目和移动端或 Android 方向存在直接关联。你可以重点看它的模块划分、状态管理、UI 组织、构建脚本和测试方式；如果它有 Kotlin、Compose 或移动端示例，可以拆解成自己的组件模板、架构参考或团队编码规范。落地时建议先做一个小型 Demo，把其中一个核心流程移植到现有 Android 工程中，再评估是否适合团队复用。</p></div>
+          </div>
+        </div>
+      </article></div>
+    </section>
+<section class="period-panel monthly" id="monthly" data-period="monthly">
+      <div class="panel-head">
+        <div>
+          <h2>Monthly Top 20</h2>
+          <p>过去一个月长期热门，更适合判断趋势和生态方向。</p>
+        </div>
+        <span>17 个仓库</span>
+      </div>
+      <div class="rank-list"><article class="rank-card top-1">
+        <div class="rank-no"><span>#1</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/colbymchenry/codegraph" target="_blank" rel="noreferrer">colbymchenry/codegraph</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#8<small>+13,925</small></span><span class="rank-badge monthly"><b>月榜</b>#1<small>+34,446</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+34,446 stars</strong></div>
+          </div>
+          <p class="desc">Pre-indexed code knowledge graph for Claude Code, Codex, Gemini, Cursor, OpenCode, AntiGravity, Kiro, and Hermes Agent — fewer tokens, fewer tool calls, 100% local</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>colbymchenry/codegraph 主要用来沉淀和检索代码库上下文、历史知识或长期记忆、让 AI Agent 执行跨步骤任务、调用工具并编排复杂工作流。它解决的核心问题是：减少反复解释业务背景、模块边界和历史决策的成本；把人工拆任务、查资料、改代码、验证结果的链路自动化。结合当前项目材料看，Pre-indexed code knowledge graph for Claude Code, Codex, Gemini, Cursor, OpenCode, AntiGravity, Kiro, and Hermes Agent — fewer tokens, fewer tool calls, 100% local</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，colbymchenry/codegraph 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：为 Android 项目建立模块知识库，例如页面路由、网络接口、缓存策略、埋点规范和历史 PR 决策；用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card top-2">
+        <div class="rank-no"><span>#2</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/anthropics/financial-services" target="_blank" rel="noreferrer">anthropics/financial-services</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#2<small>+21,308</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+21,308 stars</strong></div>
+          </div>
+          <p class="desc">未标注</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>anthropics/financial-services 当前公开材料提供的信息有限，但可以先把它视为一个值得观察的开源实现：它可能在降低使用门槛、封装复杂能力、提升自动化程度或提供开源替代方案。建议重点阅读 README 的快速开始、核心架构、examples 和 issue，再判断它是可直接落地的工具、可参考的工程实现，还是只适合趋势观察。当前材料摘要：当前 Trending 页面和 GitHub API 未提供足够长的项目说明，需要继续阅读 README、examples 和 issue 来确认成熟度。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>anthropics/financial-services 和 Android 的直接关联暂时不强，建议把它当作工程实践样本来读：看它如何拆分模块、组织文档、设计配置、处理错误、写测试、做 CI 和维护 examples。对你的提升方式是提炼可迁移做法，再转成 Android 团队规范，例如模块边界说明、组件模板、Gradle 检查任务、发版前清单、AI Code Review 规则或技术调研模板；如果读完 README 后仍找不到和当前业务的交集，就把它保留为趋势观察即可。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card top-3">
+        <div class="rank-no"><span>#3</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/CloakHQ/CloakBrowser" target="_blank" rel="noreferrer">CloakHQ/CloakBrowser</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#3<small>+21,400</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+21,400 stars</strong></div>
+          </div>
+          <p class="desc">Stealth Chromium that passes every bot detection test. Drop-in Playwright replacement with source-level fingerprint patches. 30/30 tests passed.</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>CloakHQ/CloakBrowser 主要用来处理浏览器自动化、网页行为模拟、端到端验证或反检测执行环境。它解决的核心问题是：解决网页自动化不稳定、真实环境难模拟、回归验证依赖人工的问题。结合当前项目材料看，Stealth Chromium that passes every bot detection test. Drop-in Playwright replacement with source-level fingerprint patches. 30/30 tests passed.</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，CloakHQ/CloakBrowser 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：迁移到 Android 场景时，可借鉴自动化验证思路，用于 WebView、H5 容器、深链和端到端回归检查。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#4</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/rohitg00/agentmemory" target="_blank" rel="noreferrer">rohitg00/agentmemory</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#4<small>+18,071</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+18,071 stars</strong></div>
+          </div>
+          <p class="desc">#1 Persistent memory for AI coding agents based on real-world benchmarks</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>rohitg00/agentmemory 主要用来沉淀和检索代码库上下文、历史知识或长期记忆、让 AI Agent 执行跨步骤任务、调用工具并编排复杂工作流。它解决的核心问题是：减少反复解释业务背景、模块边界和历史决策的成本；把人工拆任务、查资料、改代码、验证结果的链路自动化。结合当前项目材料看，#1 Persistent memory for AI coding agents based on real-world benchmarks</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，rohitg00/agentmemory 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：为 Android 项目建立模块知识库，例如页面路由、网络接口、缓存策略、埋点规范和历史 PR 决策；用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#5</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/Lum1104/Understand-Anything" target="_blank" rel="noreferrer">Lum1104/Understand-Anything</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#2<small>+22,750</small></span><span class="rank-badge monthly"><b>月榜</b>#5<small>+37,390</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+37,390 stars</strong></div>
+          </div>
+          <p class="desc">Graphs that teach &gt; graphs that impress. Turn any code into an interactive knowledge graph you can explore, search, and ask questions about. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more.</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>47,221 stars</span>
+            <span>3,835 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>antigravity-skills</span><span>business-knowledge</span><span>claude-code</span><span>claude-skills</span><span>codebase-analysis</span><span>codex</span><span>codex-skills</span><span>developer-tools-ai-agent</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Lum1104/Understand-Anything 主要用来沉淀和检索代码库上下文、历史知识或长期记忆、把工程经验、提示词、检查清单或工作流封装成可复用的 Agent Skill、让 AI Agent 执行跨步骤任务、调用工具并编排复杂工作流。它解决的核心问题是：减少反复解释业务背景、模块边界和历史决策的成本；让团队经验从口头约定变成可执行、可复查、可迁移的规则；把人工拆任务、查资料、改代码、验证结果的链路自动化。结合当前项目材料看，Graphs that teach &gt; graphs that impress. Turn any code into an interactive knowledge graph you can explore, search, and ask questions about. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more.</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，Lum1104/Understand-Anything 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：为 Android 项目建立模块知识库，例如页面路由、网络接口、缓存策略、埋点规范和历史 PR 决策；沉淀 Android 团队规范，例如 Kotlin/Compose 写法、Activity/Fragment 迁移规则、Gradle 检查和 PR Review 清单；用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#6</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/Imbad0202/academic-research-skills" target="_blank" rel="noreferrer">Imbad0202/academic-research-skills</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#6<small>+21,119</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+21,119 stars</strong></div>
+          </div>
+          <p class="desc">Academic Research Skills for Claude Code: research → write → review → revise → finalize</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Imbad0202/academic-research-skills 主要用来把工程经验、提示词、检查清单或工作流封装成可复用的 Agent Skill。它解决的核心问题是：让团队经验从口头约定变成可执行、可复查、可迁移的规则。结合当前项目材料看，Academic Research Skills for Claude Code: research → write → review → revise → finalize</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，Imbad0202/academic-research-skills 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：沉淀 Android 团队规范，例如 Kotlin/Compose 写法、Activity/Fragment 迁移规则、Gradle 检查和 PR Review 清单。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#7</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/HKUDS/ViMax" target="_blank" rel="noreferrer">HKUDS/ViMax</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#7<small>+5,721</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+5,721 stars</strong></div>
+          </div>
+          <p class="desc">&quot;ViMax: Agentic Video Generation (Director, Screenwriter, Producer, and Video Generator All-in-One)&quot;</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>HKUDS/ViMax 主要用来让 AI Agent 执行跨步骤任务、调用工具并编排复杂工作流、封装图片、视频、语音或生成式 AI 内容生产链路。它解决的核心问题是：把人工拆任务、查资料、改代码、验证结果的链路自动化；把模型调用、任务状态、失败重试和结果预览从零散能力做成产品化流程。结合当前项目材料看，&quot;ViMax: Agentic Video Generation (Director, Screenwriter, Producer, and Video Generator All-in-One)&quot;</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，HKUDS/ViMax 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划；可映射到 Android 的上传/轮询/后台任务、生成进度、媒体缓存、播放器预览和失败重试体验。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#8</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/mattpocock/skills" target="_blank" rel="noreferrer">mattpocock/skills</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#8<small>+65,737</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+65,737 stars</strong></div>
+          </div>
+          <p class="desc">Skills for Real Engineers. Straight from my .claude directory.</p>
+          <div class="meta">
+            <span>Shell</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>mattpocock/skills 主要用来把工程经验、提示词、检查清单或工作流封装成可复用的 Agent Skill。它解决的核心问题是：让团队经验从口头约定变成可执行、可复查、可迁移的规则。结合当前项目材料看，Skills for Real Engineers. Straight from my .claude directory.</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，mattpocock/skills 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：沉淀 Android 团队规范，例如 Kotlin/Compose 写法、Activity/Fragment 迁移规则、Gradle 检查和 PR Review 清单。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#9</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/rohitg00/ai-engineering-from-scratch" target="_blank" rel="noreferrer">rohitg00/ai-engineering-from-scratch</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#4<small>+10,586</small></span><span class="rank-badge monthly"><b>月榜</b>#9<small>+19,640</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+19,640 stars</strong></div>
+          </div>
+          <p class="desc">Learn it. Build it. Ship it for others.</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>rohitg00/ai-engineering-from-scratch 主要用来提供运行时、框架、类型检查、构建或开发者工具能力。它解决的核心问题是：提升工程反馈速度、代码质量、增量检查和开发体验。结合当前项目材料看，Learn it. Build it. Ship it for others.</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，rohitg00/ai-engineering-from-scratch 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：可借鉴到 Gradle 插件、Lint 规则、模块依赖治理、构建缓存、代码生成和 CI 质量门禁。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#10</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/decolua/9router" target="_blank" rel="noreferrer">decolua/9router</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#10<small>+12,051</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+12,051 stars</strong></div>
+          </div>
+          <p class="desc">Unlimited FREE AI coding. Connect Claude Code, Codex, Cursor, Cline, Copilot, Antigravity to FREE Claude/GPT/Gemini via 40+ providers. Auto-fallback, RTK -40% tokens, never hit limits.</p>
+          <div class="meta">
+            <span>JavaScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>decolua/9router 主要用来提供命令行或终端界面，把能力变成脚本和自动化入口。它解决的核心问题是：降低工具集成成本，让能力可以进入 CI、脚手架和本地开发流程。结合当前项目材料看，Unlimited FREE AI coding. Connect Claude Code, Codex, Cursor, Cline, Copilot, Antigravity to FREE Claude/GPT/Gemini via 40+ providers. Auto-fallback, RTK -40% tokens, never hit limits.</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，decolua/9router 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：借鉴其 CLI 设计，把构建、Lint、截图测试、依赖检查、发版前校验封装为 Android 团队命令。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#11</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/harry0703/MoneyPrinterTurbo" target="_blank" rel="noreferrer">harry0703/MoneyPrinterTurbo</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#1<small>+1,937</small></span><span class="rank-badge weekly"><b>周榜</b>#1<small>+15,955</small></span><span class="rank-badge monthly"><b>月榜</b>#11<small>+16,993</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+16,993 stars</strong></div>
+          </div>
+          <p class="desc">利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>74,219 stars</span>
+            <span>10,589 forks</span>
+            <span>MIT</span>
+          </div>
+          <div class="topics"><span>ai</span><span>automation</span><span>chatgpt</span><span>moviepy</span><span>python</span><span>shortvideo</span><span>tiktok</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>harry0703/MoneyPrinterTurbo 主要用来提供命令行或终端界面，把能力变成脚本和自动化入口、处理浏览器自动化、网页行为模拟、端到端验证或反检测执行环境、封装图片、视频、语音或生成式 AI 内容生产链路。它解决的核心问题是：降低工具集成成本，让能力可以进入 CI、脚手架和本地开发流程；解决网页自动化不稳定、真实环境难模拟、回归验证依赖人工的问题；把模型调用、任务状态、失败重试和结果预览从零散能力做成产品化流程。结合当前项目材料看，MoneyPrinterTurbo 💸 简体中文 English العربية 只需提供一个视频 主题 或 关键词 ，就可以全自动生成视频文案、视频素材、视频字幕、视频背景音乐，然后合成一个高清的短视频。 Web界面 docs/webui.jpg API界面 docs/api.jpg 功能特性 🎯 - x 完整的 MVC架构 ，代码 结构清晰 ，易于维护，支持 API 和 Web界面 - x 支持视频文案 AI自动生成 ，也可以 自定义文案 - x 支持多种 高清视频 尺寸 - x 竖屏 9:16， 108…</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，harry0703/MoneyPrinterTurbo 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：借鉴其 CLI 设计，把构建、Lint、截图测试、依赖检查、发版前校验封装为 Android 团队命令；迁移到 Android 场景时，可借鉴自动化验证思路，用于 WebView、H5 容器、深链和端到端回归检查；可映射到 Android 的上传/轮询/后台任务、生成进度、媒体缓存、播放器预览和失败重试体验。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#12</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/yikart/AiToEarn" target="_blank" rel="noreferrer">yikart/AiToEarn</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#12<small>+8,241</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+8,241 stars</strong></div>
+          </div>
+          <p class="desc">Let&#39;s use AI to Earn!</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>yikart/AiToEarn 当前公开材料提供的信息有限，但可以先把它视为一个值得观察的开源实现：它可能在降低使用门槛、封装复杂能力、提升自动化程度或提供开源替代方案。建议重点阅读 README 的快速开始、核心架构、examples 和 issue，再判断它是可直接落地的工具、可参考的工程实现，还是只适合趋势观察。当前材料摘要：Let&#39;s use AI to Earn!</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>yikart/AiToEarn 和 Android 的直接关联暂时不强，建议把它当作工程实践样本来读：看它如何拆分模块、组织文档、设计配置、处理错误、写测试、做 CI 和维护 examples。对你的提升方式是提炼可迁移做法，再转成 Android 团队规范，例如模块边界说明、组件模板、Gradle 检查任务、发版前清单、AI Code Review 规则或技术调研模板；如果读完 README 后仍找不到和当前业务的交集，就把它保留为趋势观察即可。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#13</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/bytedance/UI-TARS-desktop" target="_blank" rel="noreferrer">bytedance/UI-TARS-desktop</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#13<small>+6,370</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+6,370 stars</strong></div>
+          </div>
+          <p class="desc">The Open-Source Multimodal AI Agent Stack: Connecting Cutting-Edge AI Models and Agent Infra</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>bytedance/UI-TARS-desktop 主要用来让 AI Agent 执行跨步骤任务、调用工具并编排复杂工作流。它解决的核心问题是：把人工拆任务、查资料、改代码、验证结果的链路自动化。结合当前项目材料看，The Open-Source Multimodal AI Agent Stack: Connecting Cutting-Edge AI Models and Agent Infra</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，bytedance/UI-TARS-desktop 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#14</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/ruvnet/ruflo" target="_blank" rel="noreferrer">ruvnet/ruflo</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#14<small>+23,191</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+23,191 stars</strong></div>
+          </div>
+          <p class="desc">🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features enterprise-grade architecture, self-learning swarm intelligence, …</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>ruvnet/ruflo 主要用来让 AI Agent 执行跨步骤任务、调用工具并编排复杂工作流、提供运行时、框架、类型检查、构建或开发者工具能力。它解决的核心问题是：把人工拆任务、查资料、改代码、验证结果的链路自动化；提升工程反馈速度、代码质量、增量检查和开发体验。结合当前项目材料看，🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features enterprise-grade architecture, self-learning swarm intelligence, RAG integration, and…</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，ruvnet/ruflo 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划；可借鉴到 Gradle 插件、Lint 规则、模块依赖治理、构建缓存、代码生成和 CI 质量门禁。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#15</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/AIDC-AI/Pixelle-Video" target="_blank" rel="noreferrer">AIDC-AI/Pixelle-Video</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#15<small>+12,581</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+12,581 stars</strong></div>
+          </div>
+          <p class="desc">🚀 AI 全自动短视频引擎 | AI Fully Automated Short Video Engine</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>AIDC-AI/Pixelle-Video 主要用来封装图片、视频、语音或生成式 AI 内容生产链路。它解决的核心问题是：把模型调用、任务状态、失败重试和结果预览从零散能力做成产品化流程。结合当前项目材料看，🚀 AI 全自动短视频引擎 | AI Fully Automated Short Video Engine</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，AIDC-AI/Pixelle-Video 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：可映射到 Android 的上传/轮询/后台任务、生成进度、媒体缓存、播放器预览和失败重试体验。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#16</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/multica-ai/andrej-karpathy-skills" target="_blank" rel="noreferrer">multica-ai/andrej-karpathy-skills</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#16<small>+62,506</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+62,506 stars</strong></div>
+          </div>
+          <p class="desc">A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy&#39;s observations on LLM coding pitfalls.</p>
+          <div class="meta">
+            <span>未标注</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>multica-ai/andrej-karpathy-skills 主要用来把工程经验、提示词、检查清单或工作流封装成可复用的 Agent Skill。它解决的核心问题是：让团队经验从口头约定变成可执行、可复查、可迁移的规则。结合当前项目材料看，A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy&#39;s observations on LLM coding pitfalls.</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，multica-ai/andrej-karpathy-skills 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：沉淀 Android 团队规范，例如 Kotlin/Compose 写法、Activity/Fragment 迁移规则、Gradle 检查和 PR Review 清单。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#17</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/ruvnet/RuView" target="_blank" rel="noreferrer">ruvnet/RuView</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#17<small>+18,955</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+18,955 stars</strong></div>
+          </div>
+          <p class="desc">π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel of video.</p>
+          <div class="meta">
+            <span>Rust</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>ruvnet/RuView 主要用来封装图片、视频、语音或生成式 AI 内容生产链路。它解决的核心问题是：把模型调用、任务状态、失败重试和结果预览从零散能力做成产品化流程。结合当前项目材料看，π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel of video.</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，ruvnet/RuView 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：可映射到 Android 的上传/轮询/后台任务、生成进度、媒体缓存、播放器预览和失败重试体验。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+          </div>
+        </div>
+      </article></div>
+    </section>
+  </main>
+  <footer>Generated by Codex github-trending-report skill.</footer>
+  <script>
+    const buttons = Array.from(document.querySelectorAll('.tab'));
+    const panels = Array.from(document.querySelectorAll('.period-panel'));
+    function showPeriod(period, updateHash = true) {
+      buttons.forEach(button => button.classList.toggle('active', button.dataset.period === period));
+      panels.forEach(panel => panel.classList.toggle('active', panel.dataset.period === period));
+      if (updateHash) history.replaceState(null, '', '#' + period);
+    }
+    buttons.forEach(button => button.addEventListener('click', () => showPeriod(button.dataset.period)));
+    const initial = location.hash.replace('#', '');
+    if (['daily', 'weekly', 'monthly'].includes(initial)) showPeriod(initial, false);
+  </script>
+</body>
+</html>
