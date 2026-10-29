@@ -203,7 +203,7 @@
           <div class="topics"><strong class="topics-label">Topics</strong><span>ai-agents</span><span>ai-tutor</span><span>clawbot</span><span>cli-tool</span><span>deepresearch</span><span>interactive-learning</span><span>learning</span><span>multi-agent-systems</span></div>
           <div class="insights">
             <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>DeepTutor 面向持续个性化辅导，README 描述学习工作区、知识库、阅读材料、练习评估、学习路径和会话恢复；ai-tutor、interactive-learning 等 topics 与其教育场景一致。它解决学习资料、答疑和阶段练习割裂、长期学习上下文难保留的问题，学习效果仍需实际评测。</p></div>
-            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，HKUDS/DeepTutor 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划；借鉴其 CLI 设计，把构建、Lint、截图测试、依赖检查、发版前校验封装为 Android 团队命令。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>教育类 Android App 可参考资料索引、来源展示、练习记录与学习路径分层，将解析和模型任务放在受控后端，客户端负责上传、进度和可恢复会话。可迁移有界记忆与失败恢复设计，但不应把该 Web/Python 项目直接当作 Android SDK。</p></div>
           </div>
         </div>
       </article><article class="rank-card">
@@ -272,7 +272,7 @@
           <div class="topics"><strong class="topics-label">Topics</strong><span>agent-skills</span><span>ai</span><span>anti-slop</span><span>design</span><span>slop</span></div>
           <div class="insights">
             <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Impeccable 为编码 Agent 提供界面设计词汇和审查入口，当前 description 明确提到 polish、bolder、critique、audit，topics 指向设计与生成内容质量。它帮助将模糊的美化要求变成可执行的调整和检查，减少套用通用样式及未经审阅就交付页面的问题。</p></div>
-            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，pbakaus/impeccable 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：沉淀 Android 团队规范，例如 Kotlin/Compose 写法、Activity/Fragment 迁移规则、Gradle 检查和 PR Review 清单；用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划；借鉴其 CLI 设计，把构建、Lint、截图测试、依赖检查、发版前校验封装为 Android 团队命令。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>可将设计规则组织方式迁移到 Android 团队，把颜色、排版、间距、无障碍和状态规范写成 token 与验收清单，再用截图检查 Agent 产出的 Compose 页面。它不是现成 Compose 组件库，网页审查结果仍需结合 TalkBack、字体缩放和原生交互验证。</p></div>
           </div>
         </div>
       </article><article class="rank-card">
@@ -581,7 +581,7 @@
           <div class="topics"><strong class="topics-label">Topics</strong><span>agent-skills</span><span>ai</span><span>anti-slop</span><span>design</span><span>slop</span></div>
           <div class="insights">
             <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Impeccable 为编码 Agent 提供界面设计词汇和审查入口，当前 description 明确提到 polish、bolder、critique、audit，topics 指向设计与生成内容质量。它帮助将模糊的美化要求变成可执行的调整和检查，减少套用通用样式及未经审阅就交付页面的问题。</p></div>
-            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，pbakaus/impeccable 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：沉淀 Android 团队规范，例如 Kotlin/Compose 写法、Activity/Fragment 迁移规则、Gradle 检查和 PR Review 清单；用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划；借鉴其 CLI 设计，把构建、Lint、截图测试、依赖检查、发版前校验封装为 Android 团队命令。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>可将设计规则组织方式迁移到 Android 团队，把颜色、排版、间距、无障碍和状态规范写成 token 与验收清单，再用截图检查 Agent 产出的 Compose 页面。它不是现成 Compose 组件库，网页审查结果仍需结合 TalkBack、字体缩放和原生交互验证。</p></div>
           </div>
         </div>
       </article><article class="rank-card">
@@ -821,7 +821,7 @@
           <div class="topics"><strong class="topics-label">Topics</strong><span>agent-skills</span><span>ai</span><span>anti-slop</span><span>design</span><span>slop</span></div>
           <div class="insights">
             <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Impeccable 为编码 Agent 提供界面设计词汇和审查入口，当前 description 明确提到 polish、bolder、critique、audit，topics 指向设计与生成内容质量。它帮助将模糊的美化要求变成可执行的调整和检查，减少套用通用样式及未经审阅就交付页面的问题。</p></div>
-            <div class="insight android"><b>Android 开发提升</b><p>对 Android 开发者来说，pbakaus/impeccable 的价值不一定是直接引入依赖，而是把它的做法转化到移动端研发链路。你可以重点借鉴：沉淀 Android 团队规范，例如 Kotlin/Compose 写法、Activity/Fragment 迁移规则、Gradle 检查和 PR Review 清单；用于需求拆解、影响面分析、生成测试、崩溃日志归因和旧页面重构计划；借鉴其 CLI 设计，把构建、Lint、截图测试、依赖检查、发版前校验封装为 Android 团队命令。落地建议：先选一个真实 Android 模块，例如登录、首页 Feed、直播间、WebView 容器或设置页，把相关代码、接口文档、埋点和历史问题整理成上下文，再用该项目体现出的能力去辅助改造计划、代码审查、测试补齐或工具化建设。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>可将设计规则组织方式迁移到 Android 团队，把颜色、排版、间距、无障碍和状态规范写成 token 与验收清单，再用截图检查 Agent 产出的 Compose 页面。它不是现成 Compose 组件库，网页审查结果仍需结合 TalkBack、字体缩放和原生交互验证。</p></div>
           </div>
         </div>
       </article><article class="rank-card">
