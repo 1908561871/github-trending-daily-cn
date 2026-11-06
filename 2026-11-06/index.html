@@ -1,0 +1,1143 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI通知 GitHub 热门仓库日报 2026-11-06</title>
+  <style>
+    :root { color-scheme: light; --bg: #f7f9fc; --panel: #fff; --text: #0f172a; --muted: #475569; --soft: #64748b; --line: #d9e2ef; --ink: #08111f; --daily: #1e40af; --weekly: #047857; --monthly: #b45309; --hot: #b42318; --amber: #f59e0b; --shadow: 0 20px 60px rgba(15,23,42,.08); }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: radial-gradient(circle at top left, #eaf1ff 0, transparent 31rem), linear-gradient(180deg, #f8fbff 0, var(--bg) 34rem); color: var(--text); line-height: 1.55; }
+    header { background: linear-gradient(135deg, #08111f 0%, #102a56 58%, #173b7b 100%); color: #fff; padding: 38px 20px 34px; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .wrap { max-width: 1120px; margin: 0 auto; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 14px; color: #bfdbfe; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 5px rgba(245,158,11,.16); }
+    h1 { margin: 0 0 12px; max-width: 780px; font-size: 36px; line-height: 1.12; letter-spacing: 0; }
+    .subtitle { margin: 0; max-width: 820px; color: #d7e3f7; }
+    main { padding: 28px 20px 52px; }
+    h2 { font-size: 24px; margin: 0 0 5px; letter-spacing: 0; }
+    .notice { border: 1px solid #f2d6a2; border-left: 4px solid var(--amber); background: #fffbeb; padding: 12px 14px; border-radius: 8px; margin-bottom: 16px; color: #7c4a03; }
+    .tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 0 0 24px; position: relative; z-index: 2; }
+    .tab { appearance: none; border: 1px solid rgba(148,163,184,.34); background: rgba(255,255,255,.94); color: var(--text); border-radius: 8px; padding: 16px 18px; text-align: left; cursor: pointer; box-shadow: var(--shadow); transition: border-color .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease; }
+    .tab:hover { border-color: #93b4e8; box-shadow: 0 22px 70px rgba(30,64,175,.13); }
+    .tab:focus-visible { outline: 3px solid rgba(59,130,246,.36); outline-offset: 3px; }
+    .tab strong, .tab span { display: block; }
+    .tab strong { font-size: 16px; }
+    .tab span { color: var(--soft); font-size: 13px; margin-top: 4px; }
+    .tab.active { color: #fff; border-color: transparent; box-shadow: 0 22px 70px rgba(30,64,175,.22); }
+    .tab.daily.active { background: var(--daily); }
+    .tab.weekly.active { background: var(--weekly); }
+    .tab.monthly.active { background: var(--monthly); }
+    .tab.active span { color: rgba(255,255,255,.82); }
+    .period-panel { display: none; }
+    .period-panel.active { display: block; }
+    .panel-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 16px; padding: 4px 2px 0; }
+    .panel-head p { margin: 0; color: var(--muted); }
+    .panel-head > span { border: 1px solid var(--line); border-radius: 999px; color: #1e3a8a; background: #fff; padding: 5px 12px; font-size: 13px; font-weight: 700; white-space: nowrap; margin-top: 4px; }
+    .rank-list { display: grid; gap: 14px; }
+    .rank-card { display: grid; grid-template-columns: 72px minmax(0, 1fr); background: rgba(255,255,255,.96); border: 1px solid var(--line); border-radius: 8px; padding: 18px; box-shadow: 0 8px 30px rgba(15,23,42,.045); position: relative; overflow: hidden; transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
+    .rank-card::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: var(--daily); opacity: .82; }
+    .weekly .rank-card::before { background: var(--weekly); }
+    .monthly .rank-card::before { background: var(--monthly); }
+    .rank-card:hover { border-color: #b9c9dd; box-shadow: 0 18px 46px rgba(15,23,42,.09); transform: translateY(-1px); }
+    .rank-card.top-1 { background: linear-gradient(180deg, #ffffff 0%, #fff9eb 100%); border-color: #f1c56f; box-shadow: 0 24px 76px rgba(245,158,11,.16); }
+    .rank-card.top-1::after { content: "FOCUS"; position: absolute; top: 14px; right: -31px; transform: rotate(35deg); background: var(--amber); color: #111827; font-size: 11px; font-weight: 900; letter-spacing: .08em; padding: 5px 34px; }
+    .rank-card.top-2, .rank-card.top-3 { border-color: #c8d7ec; }
+    .rank-no { color: var(--daily); font-weight: 900; }
+    .rank-no span { display: block; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 26px; line-height: 1; }
+    .rank-no small { display: block; margin-top: 6px; color: var(--soft); font-size: 12px; font-weight: 700; }
+    .weekly .rank-no { color: var(--weekly); }
+    .monthly .rank-no { color: var(--monthly); }
+    .rank-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 10px; }
+    h3 { margin: 0 0 9px; font-size: 21px; line-height: 1.22; }
+    h3 a { color: var(--daily); text-decoration: none; overflow-wrap: anywhere; }
+    h3 a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+    .weekly h3 a { color: var(--weekly); }
+    .monthly h3 a { color: var(--monthly); }
+    .growth { border: 1px solid #f0cc82; border-radius: 8px; color: #78350f; background: #fffbeb; padding: 8px 10px; min-width: 118px; text-align: right; white-space: nowrap; }
+    .growth span, .growth strong { display: block; }
+    .growth span { color: #92400e; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .growth strong { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 15px; margin-top: 1px; }
+    .rank-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+    .rank-badge { display: inline-flex; align-items: center; gap: 5px; border-radius: 999px; padding: 4px 9px; font-size: 12px; font-weight: 700; border: 1px solid transparent; white-space: nowrap; }
+    .rank-badge b { font-weight: 800; }
+    .rank-badge small { font-size: 11px; font-weight: 600; opacity: .86; }
+    .rank-badge.daily { color: #0f4da1; background: #edf5ff; border-color: #c9defa; }
+    .rank-badge.weekly { color: #076451; background: #eaf8f3; border-color: #bfe7da; }
+    .rank-badge.monthly { color: #8a3d05; background: #fff4e5; border-color: #f4d2a5; }
+    .signal { border: 1px solid #f6c6c2; border-radius: 999px; padding: 4px 9px; font-size: 12px; color: var(--hot); background: #fff4f2; font-weight: 700; }
+    .desc { margin: 0 0 13px; color: #334155; font-size: 15px; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .meta span { border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; font-size: 12px; color: #344054; background: #fbfcfe; }
+    .topics { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .topics span { background: #eef5ff; color: #1d4ed8; border: 1px solid #dbeafe; border-radius: 6px; padding: 4px 8px; font-size: 12px; }
+    .topics-label { align-self: center; color: var(--soft); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
+    .insights { display: grid; gap: 10px; }
+    .insight { border: 1px solid #e4eaf3; border-radius: 8px; background: #fbfdff; padding: 11px 12px; }
+    .insight b { display: block; color: #1e3a8a; font-size: 12px; margin-bottom: 5px; }
+    .insight p { margin: 0; color: #334155; font-size: 13px; }
+    .insight.usecase { background: #eff6ff; border-color: #c9defa; }
+    .insight.android { background: #fff7ed; border-color: #fed7aa; }
+    .insight.android b { color: #92400e; }
+    footer { padding: 20px; color: var(--muted); text-align: center; font-size: 13px; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; } }
+    @media (max-width: 760px) { .tabs { grid-template-columns: 1fr; } .rank-card { grid-template-columns: 1fr; } .rank-no { margin-bottom: 10px; } .rank-head, .panel-head { display: block; } .growth, .panel-head > span { display: inline-block; margin-top: 8px; text-align: left; } }
+    @media (max-width: 640px) { h1 { font-size: 27px; } main { padding-left: 14px; padding-right: 14px; } .rank-card { padding: 15px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">GitHub Trending Intelligence</div>
+      <h1>AI通知 GitHub 热门仓库日报 2026-11-06</h1>
+      <p class="subtitle">生成时间：2026/11/06 09:05（Asia/Shanghai） · 去重 37 个唯一仓库，重复 6 个 · 数据源 GitHub Trending</p>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="notice">daily 仅解析到 15 个有效仓库；weekly 仅解析到 16 个有效仓库；monthly 仅解析到 12 个有效仓库；部分仓库详情补充失败，已使用 Trending 页面字段兜底</div>
+    <div class="tabs" role="tablist" aria-label="GitHub Trending 榜单切换"><button class="tab daily active" type="button" data-period="daily">
+    <strong>Daily Top 20</strong>
+    <span>15</span>
+  </button><button class="tab weekly" type="button" data-period="weekly">
+    <strong>Weekly Top 20</strong>
+    <span>16</span>
+  </button><button class="tab monthly" type="button" data-period="monthly">
+    <strong>Monthly Top 20</strong>
+    <span>12</span>
+  </button></div>
+    <section class="period-panel daily active" id="daily" data-period="daily">
+      <div class="panel-head">
+        <div>
+          <h2>Daily Top 20</h2>
+          <p>过去一天增长最快，适合发现突然冒头的新项目。</p>
+        </div>
+        <span>15 个仓库</span>
+      </div>
+      <div class="rank-list"><article class="rank-card top-1">
+        <div class="rank-no"><span>#1</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/NVIDIA/auto-ontology" target="_blank" rel="noreferrer">NVIDIA/auto-ontology</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#1<small>+2,679</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+2,679 stars</strong></div>
+          </div>
+          <p class="desc">Auto Ontology is a Python framework for building semantic, graph-based reasoning layers over data. It enables deterministic query generation, better context retrieval, and more explainable AI for LLM and agent workflows.</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Auto Ontology 从企业元数据构建语义目录与知识图谱，README 描述统一指标和实体定义、校验查询及返回来源，并通过 MCP、CLI、API 提供上下文。它解决 Agent 查到数据却不理解业务含义、跨系统指标冲突和答案不可追溯的问题；topics 未标注。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>Android 数据看板可借鉴统一指标定义、查询来源和版本管理，将语义解析留在后端，客户端展示统计口径、时间范围与出处。它是 Python 数据基础设施，不能直接作为 Room 层替代；权限过滤和离线缓存仍需独立设计。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card top-2">
+        <div class="rank-no"><span>#2</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/mattpocock/skills" target="_blank" rel="noreferrer">mattpocock/skills</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#2<small>+2,071</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+2,071 stars</strong></div>
+          </div>
+          <p class="desc">Skills for Real Engineers. Straight from my .agents directory.</p>
+          <div class="meta">
+            <span>Shell</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>该仓库收集作者日常使用的工程 Agent Skills，重点是把真实软件开发中的方法和检查步骤整理成可调用流程，而非运行时框架。它解决每次编码任务都从零组织步骤、验证标准因人而异的问题。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>可参考其 Skill 的输入、边界与验收写法，为 Android 团队建立需求澄清、Compose Review、Gradle 故障定位、测试先行和发布检查流程；只选实际能缩短反馈链的规则，并用真实仓库任务验证效果。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card top-3">
+        <div class="rank-no"><span>#3</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/garrytan/gstack" target="_blank" rel="noreferrer">garrytan/gstack</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#3<small>+612</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+612 stars</strong></div>
+          </div>
+          <p class="desc">Use Garry Tan&#39;s exact Claude Code setup: 23 opinionated tools that serve as CEO, Designer, Eng Manager, Release Manager, Doc Engineer, and QA</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>gstack 是一组角色化的编码 Agent 工具，仓库描述把产品、设计、工程管理、发布和 QA 职责拆开，试图让单人或小团队以明确视角审查产品开发。它解决 Agent 只负责写代码、需求和质量把关容易遗漏的问题；产能数字属于作者自述，不作为效果保证。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>Android 团队可借鉴角色分工：需求 Agent 写验收标准、实现 Agent 修改模块、QA Agent 生成设备矩阵、发布 Agent 检查签名与版本号，但每一步都应有 Gradle 输出、截图或真机日志作证。它不是 Android 依赖，也不应自动掌握发布凭据。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#4</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/Usagi-org/ai-goofish-monitor" target="_blank" rel="noreferrer">Usagi-org/ai-goofish-monitor</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#4<small>+240</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+240 stars</strong></div>
+          </div>
+          <p class="desc">基于 Playwright 和AI实现的闲鱼多任务实时/定时监控与智能分析系统，配备了功能完善的后台管理UI。帮助用户从闲鱼海量商品中，找到心仪产品。</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>该项目用 Playwright 和 AI 监控闲鱼商品，README 描述关键词、价格、区域筛选、多任务调度、结果管理和多渠道通知。它解决人工反复搜索商品、判断是否符合需求的重复工作；运行依赖账号、页面及平台接口的实际可用性。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>可迁移任务配置、后台执行、结果去重和通知跳转的产品设计，用于 Android 的合法订阅提醒场景。浏览器采集与模型判断应留在受控服务端，手机负责状态、筛选解释和失败反馈；不要把网页抓取脚本直接嵌入 App 或暴露账号凭据。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#5</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/D4Vinci/Scrapling" target="_blank" rel="noreferrer">D4Vinci/Scrapling</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#5<small>+1,655</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+1,655 stars</strong></div>
+          </div>
+          <p class="desc">🕷️ The BEST Web Scraping framework that handles everything from a single request to a full-scale crawl! Don&#39;t be shy, join here: https://discord.gg/EMgGbDceNQ and follow here for daily tips and tricks: https://x.com/Scrapling_dev</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Scrapling 是 Python 网页采集框架，README 展示解析器、HTTP 与浏览器会话、异步并发、CSS 选择器和文本导出。它解决从单页提取到多页面采集时解析与请求管理分散的问题；性能宣传仅适用于其指定测试，本次 topics 未标注。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>与 Android 间接相关，适合作为授权公开数据的后端采集层，客户端只消费稳定 API。可迁移会话复用、并发上限、结构变化检测和失败重试；网页解析不应承担 App 核心接口契约，需保留数据来源、时效与降级提示。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#6</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/vercel-labs/agent-desktop" target="_blank" rel="noreferrer">vercel-labs/agent-desktop</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#6<small>+2,173</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+2,173 stars</strong></div>
+          </div>
+          <p class="desc">Computer use CLI for AI agents</p>
+          <div class="meta">
+            <span>Rust</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>agent-desktop 是面向 AI Agent 的桌面操作 CLI，README 描述读取操作系统无障碍树、按元素引用点击或输入并重新读取结果。它解决桌面自动化只依赖截图和像素定位时易受布局变化影响的问题，Rust、accessibility、MCP 等 topics 与其工具定位一致。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>可迁移语义定位、动作后验证及稳定元素标识的测试方法，帮助组织 Android UIAutomator 或 Compose 自动化。它的桌面无障碍接口不等于 Android adb 接口；真机测试仍需处理权限弹窗、返回栈、异步加载与设备状态。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#7</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/max-sixty/worktrunk" target="_blank" rel="noreferrer">max-sixty/worktrunk</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#7<small>+546</small></span><span class="rank-badge weekly"><b>周榜</b>#6<small>+1,802</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+546 stars</strong></div>
+          </div>
+          <p class="desc">Worktrunk is a CLI for Git worktree management, designed for parallel AI agent workflows</p>
+          <div class="meta">
+            <span>Rust</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Worktrunk 是面向并行 AI Agent 工作流的 Git worktree 管理 CLI，用独立工作目录隔离多个分支任务。它解决多个 Agent 共享 checkout 时文件覆盖、分支切换打断工作和上下文难对应的问题。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>适合并行处理 Android 功能、测试和重构：每个 worktree 独立分支与任务范围，共享 Gradle 用户缓存但避免共用构建输出，合并前统一跑受影响模块测试；还要明确文件所有权，防止 Manifest、版本目录和公共资源冲突。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#8</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/lz4/lz4" target="_blank" rel="noreferrer">lz4/lz4</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#8<small>+23</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+23 stars</strong></div>
+          </div>
+          <p class="desc">Extremely Fast Compression algorithm</p>
+          <div class="meta">
+            <span>C</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>LZ4 是无损压缩库及 CLI。README 说明可在压缩速度与压缩比之间调节，也提供用更多压缩时间换更高压缩比的 LZ4_HC，适合频繁解压的缓存或数据包。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>Android 可在大块离线缓存上评估 LZ4，按真实数据比较磁盘占用、解压延迟和耗电。若通过 JNI 引入，需约束解压输出大小并测试损坏数据。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#9</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/google/skills" target="_blank" rel="noreferrer">google/skills</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#9<small>+211</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+211 stars</strong></div>
+          </div>
+          <p class="desc">Agent Skills for Google products and technologies</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>该仓库为编码 Agent 提供 Google 技术工作流，README 列出 Cloud IAM、项目初始化、方案设计及 Agent 部署技能，帮助团队复用操作步骤和权限要求。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>Android 团队可将配套后端的测试环境初始化、IAM 排查和部署验证整理成项目级技能，使用测试凭据验证流程。技能用于研发，应用运行时无需携带。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#10</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/vercel-labs/agent-browser" target="_blank" rel="noreferrer">vercel-labs/agent-browser</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#10<small>+150</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+150 stars</strong></div>
+          </div>
+          <p class="desc">Browser automation CLI for AI agents</p>
+          <div class="meta">
+            <span>Rust</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>agent-browser 是 Rust 浏览器自动化 CLI，通过无障碍快照返回元素引用，随后执行点击、输入并重新读取页面，解决命令行 Agent 难以定位和验证网页交互的问题。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>可用于验收 Android 配套 H5 或管理站点，并将语义定位和动作后断言迁移到 Compose 或 UIAutomator。Chrome 通过后仍需在实际 WebView 核对返回行为与桥接。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#11</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/scenario-labs/skills" target="_blank" rel="noreferrer">scenario-labs/skills</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#11<small>+667</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+667 stars</strong></div>
+          </div>
+          <p class="desc">Get production-ready images, video, audio, and 3D from any AI agent: skills that pick the right model, price before spending, and keep characters and brands consistent through the Scenario MCP, plus expert teams that drive Blender, Maya, Z…</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Scenario Skills 为 Agent 提供图像、音视频、纹理及 3D 内容生产流程，README 区分通过 Scenario MCP 的生成能力与驱动本机 DCC/游戏引擎的专家工具。它解决模型选择、素材一致性和创作工具操作分散的问题，实际交付质量需逐项验证。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>Android 游戏与媒体产品可用其制作素材原型，并建立尺寸、压缩、色域、版权来源和资源版本检查。它不是手机渲染 SDK；生成费用需预估并确认，最终素材仍应在 Android 真机验证纹理内存、动画帧率和包体积。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#12</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/ConardLi/garden-skills" target="_blank" rel="noreferrer">ConardLi/garden-skills</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#12<small>+175</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+175 stars</strong></div>
+          </div>
+          <p class="desc">ConardLi&#39;s open-source Skills collection, featuring web design, knowledge retrieval, image generation, and more.</p>
+          <div class="meta">
+            <span>JavaScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Garden Skills 汇集网页设计、知识检索及媒体生成工作流。README 的 motion-showreel 示例将可编辑画面、旁白与声音放在同一时间轴，并在成片前核对风格稿。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>可用于制作 Android 功能演示，先以真机录屏核对操作，再按旁白时间剪辑和生成字幕。可迁移可重现渲染和章节缓存方法，生成工作流放在研发侧。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#13</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/microsoft/VibeVoice" target="_blank" rel="noreferrer">microsoft/VibeVoice</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#13<small>+223</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+223 stars</strong></div>
+          </div>
+          <p class="desc">Open-Source Frontier Voice AI</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>VibeVoice 是微软语音研究仓库。README 分别介绍流式识别和可接收流式文本的实时语音合成模型，可用于需要边收音边转写、或边生成文本边播报的产品。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>Android 可先用后端验证 ASR 分片和 TTS 流，处理麦克风权限、音频焦点、会话取消和断线重连。端侧部署需另测模型体积、首包延迟和发热。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#14</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/floci-io/floci" target="_blank" rel="noreferrer">floci-io/floci</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#14<small>+779</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+779 stars</strong></div>
+          </div>
+          <p class="desc">Light, fluffy, and always free - The AWS Local Emulator alternative</p>
+          <div class="meta">
+            <span>Java</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Floci 是开发、测试和 CI 使用的本地 AWS 服务模拟器，README 描述无需云账号即可运行 AWS 形状的服务，topics 包含 S3、SQS、Docker 和 Testcontainers。它解决集成测试依赖真实云资源、环境准备慢和成本不稳定的问题，模拟行为仍需与实际云服务核对。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>Android 配套后端可用它构建上传、消息队列等联调环境，验证客户端重试、幂等和错误状态。模拟器应运行在开发机或 CI 服务侧，Android 只连接测试 API；不能以本地通过替代真实云鉴权、网络和限流验收。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#15</span><small>日榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/JiaFeiMiao-K-Cat/DiscImageStudio" target="_blank" rel="noreferrer">JiaFeiMiao-K-Cat/DiscImageStudio</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#15<small>+984</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+984 stars</strong></div>
+          </div>
+          <p class="desc">未标注</p>
+          <div class="meta">
+            <span>C#</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>DiscImageStudio 将图片与图层排版转成符合光盘物理约束的输出数据，使刻录后的盘面出现可见图案。README 描述影调、抖动、预览和 ISO、RAW、WAV+CUE 导出，以及实验性即时刻录；它解决从视觉设计到光盘数据编码的专用转换问题。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>与 Android 间接相关，可迁移图层编辑、影调参数、预览与耗时导出分离的方法，用于图像创作工具。手机端应做好文件选择、进度、取消和内存限制；此桌面工具不等于 Android 光驱或刻录 SDK。</p></div>
+          </div>
+        </div>
+      </article></div>
+    </section>
+<section class="period-panel weekly" id="weekly" data-period="weekly">
+      <div class="panel-head">
+        <div>
+          <h2>Weekly Top 20</h2>
+          <p>过去一周持续升温，能过滤掉一部分短时波动。</p>
+        </div>
+        <span>16 个仓库</span>
+      </div>
+      <div class="rank-list"><article class="rank-card top-1">
+        <div class="rank-no"><span>#1</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/thedotmack/claude-mem" target="_blank" rel="noreferrer">thedotmack/claude-mem</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#1<small>+9,318</small></span><span class="rank-badge monthly"><b>月榜</b>#8<small>+17,621</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+9,318 stars</strong></div>
+          </div>
+          <p class="desc">Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Herme…</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>claude-mem 为编码 Agent 保存跨会话上下文：记录会话活动、用 AI 压缩，再把相关历史注入未来任务。description 和 topics 指向长期记忆、检索、SQLite/向量存储；它解决多轮研发中重复解释项目约束和历史决策的问题。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>可为 Android 多模块项目沉淀已验证的架构决策、Gradle 约束和崩溃修复线索，并为记忆加来源、版本和过期时间。不要把用户数据、签名密钥或生产日志原样存入共享记忆；检索结果仍需用当前代码与测试核实。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card top-2">
+        <div class="rank-no"><span>#2</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/Nutlope/hallmark" target="_blank" rel="noreferrer">Nutlope/hallmark</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#2<small>+6,994</small></span><span class="rank-badge monthly"><b>月榜</b>#4<small>+19,070</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+6,994 stars</strong></div>
+          </div>
+          <p class="desc">Anti-AI-slop design skill for Claude Code, Cursor, and Codex.</p>
+          <div class="meta">
+            <span>CSS</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Hallmark 为编码 Agent 提供网页设计技能，通过主题材料、按用户任务组织页面、浏览器检查和独立复核，减少批量生成网页常见的空洞布局与失效交互。README 将对比度、焦点、减弱动画和移动布局列为基础门槛，并提供重新设计及审计流程。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>与原生 Android 间接相关，可把设计门槛迁移为 Compose 检查清单：TalkBack 焦点、文字对比度、字体缩放、窄屏布局及真实点击结果。WebView 或产品落地页可采用其浏览器验收方式；HTML 主题不能直接充当 Compose 组件库。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card top-3">
+        <div class="rank-no"><span>#3</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/pingdotgg/t3code" target="_blank" rel="noreferrer">pingdotgg/t3code</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#3<small>+16,235</small></span><span class="rank-badge monthly"><b>月榜</b>#9<small>+22,239</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+16,235 stars</strong></div>
+          </div>
+          <p class="desc">未标注</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>T3 Code 是本机编码 Agent 的远程控制界面。README 说明它连接已在电脑上安装并登录的 Agent，提供 Android/iOS、Web 和 Electron 入口；它解决离开开发机后难以查看与管理 Agent 会话的问题，仓库 description 与 topics 未标注。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>这是直接涉及 Android 客户端的场景。可研究会话流式展示、命令审批、断线恢复和通知跳转，但重点应验证远程访问的认证、设备绑定与敏感日志遮盖；手机端控制桌面 Agent 不等于在手机本地执行构建。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#4</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/anthropics/skills" target="_blank" rel="noreferrer">anthropics/skills</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#4<small>+3,072</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+3,072 stars</strong></div>
+          </div>
+          <p class="desc">Public repository for Agent Skills</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>anthropics/skills 提供 Claude Agent Skills 的公开实现与示例，README 指向 Agent Skills 规范资料。它让特定领域操作与提示要求可打包、复用和分发，解决通用 Agent 缺少稳定任务上下文的问题。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>适合借鉴 Skill 组织形式，把 Kotlin/Compose 编码规范、Gradle 检查、真机测试和安全审查写成可版本化能力。每个 Skill 应明确触发条件、允许的工具、完成证据与失败边界，执行前审查第三方脚本。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#5</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noreferrer">HKUDS/DeepTutor</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#5<small>+6,229</small></span><span class="rank-badge monthly"><b>月榜</b>#12<small>+14,748</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+6,229 stars</strong></div>
+          </div>
+          <p class="desc">DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/ .</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>DeepTutor 面向持续个性化辅导，README 描述学习工作区、知识库、阅读材料、练习评估、学习路径和会话恢复；ai-tutor、interactive-learning 等 topics 与其教育场景一致。它解决学习资料、答疑和阶段练习割裂、长期学习上下文难保留的问题，学习效果仍需实际评测。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>教育类 Android App 可参考资料索引、来源展示、练习记录与学习路径分层，将解析和模型任务放在受控后端，客户端负责上传、进度和可恢复会话。可迁移有界记忆与失败恢复设计，但不应把该 Web/Python 项目直接当作 Android SDK。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#6</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/max-sixty/worktrunk" target="_blank" rel="noreferrer">max-sixty/worktrunk</a></h3>
+              <div class="rank-badges"><span class="rank-badge daily"><b>日榜</b>#7<small>+546</small></span><span class="rank-badge weekly"><b>周榜</b>#6<small>+1,802</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+1,802 stars</strong></div>
+          </div>
+          <p class="desc">Worktrunk is a CLI for Git worktree management, designed for parallel AI agent workflows</p>
+          <div class="meta">
+            <span>Rust</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Worktrunk 是面向并行 AI Agent 工作流的 Git worktree 管理 CLI，用独立工作目录隔离多个分支任务。它解决多个 Agent 共享 checkout 时文件覆盖、分支切换打断工作和上下文难对应的问题。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>适合并行处理 Android 功能、测试和重构：每个 worktree 独立分支与任务范围，共享 Gradle 用户缓存但避免共用构建输出，合并前统一跑受影响模块测试；还要明确文件所有权，防止 Manifest、版本目录和公共资源冲突。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#7</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/milind-soni/OpenMausBot" target="_blank" rel="noreferrer">milind-soni/OpenMausBot</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#7<small>+5,580</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+5,580 stars</strong></div>
+          </div>
+          <p class="desc">Open-source Grok Bot alternative with a virtual machine that bots can use</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>OpenMausBot 把多个本地编码 Agent 组织成聊天联系人，每个 Bot 拥有独立会话、模型和计算环境，README 描述本地 harness、隔离虚拟机及连接应用。computer-use、Electron、Docker 等 topics 与其工作台能力一致；它解决多 Agent 的交互、执行环境和授权操作难统一管理的问题。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>与 Android 主要是研发工作流间接相关，可研究聊天式任务状态、审批、事件记录和远程环境管理，应用于 Gradle 诊断与设备回归任务。不要将桌面或 Linux VM 能力视为 Android 模拟器能力；手机控制端应重点验证设备绑定、断线恢复及敏感输出遮盖。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#8</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/obra/superpowers" target="_blank" rel="noreferrer">obra/superpowers</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#8<small>+5,131</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+5,131 stars</strong></div>
+          </div>
+          <p class="desc">An agentic skills framework &amp; software development methodology that works.</p>
+          <div class="meta">
+            <span>Shell</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Superpowers 把头脑风暴、开发方法、技能调用和子任务协作组织成 Agent 化软件开发框架。它解决复杂编码任务直接开写、过程缺少验证门槛和团队方法难复用的问题。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>可把 Android 需求固化为“澄清—测试—实现—真机验证—Review”流程，要求每阶段输出可检查产物；适合模块迁移与功能开发，但不应为了套框架制造多余文档或子任务，最终以 Gradle 测试和设备行为为准。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#9</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/pbakaus/impeccable" target="_blank" rel="noreferrer">pbakaus/impeccable</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#9<small>+9,303</small></span><span class="rank-badge monthly"><b>月榜</b>#10<small>+27,205</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+9,303 stars</strong></div>
+          </div>
+          <p class="desc">The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.</p>
+          <div class="meta">
+            <span>Rust</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Impeccable 为编码 Agent 提供界面设计词汇和审查入口，当前 description 明确提到 polish、bolder、critique、audit，topics 指向设计与生成内容质量。它帮助将模糊的美化要求变成可执行的调整和检查，减少套用通用样式及未经审阅就交付页面的问题。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>可将设计规则组织方式迁移到 Android 团队，把颜色、排版、间距、无障碍和状态规范写成 token 与验收清单，再用截图检查 Agent 产出的 Compose 页面。它不是现成 Compose 组件库，网页审查结果仍需结合 TalkBack、字体缩放和原生交互验证。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#10</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/hyprwm/Hyprland" target="_blank" rel="noreferrer">hyprwm/Hyprland</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#10<small>+1,371</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+1,371 stars</strong></div>
+          </div>
+          <p class="desc">Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn&#39;t sacrifice on its looks.</p>
+          <div class="meta">
+            <span>C++</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Hyprland 是独立实现的动态平铺 Wayland 合成器，README 提供窗口布局、工作区、动画、插件及 socket IPC。它解决 Linux 桌面窗口编排和交互定制需求，compositor、Wayland topics 表明其系统桌面层定位。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>与 Android 间接相关，可研究工作区状态、动画曲线与 IPC 解耦，帮助理解窗口管理和渲染调度。它不是 Android WindowManager 替代品；App 动画优化应以 Android 帧时间、合成层和实际设备追踪为依据。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#11</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/jakubkrehel/skills" target="_blank" rel="noreferrer">jakubkrehel/skills</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#11<small>+1,840</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+1,840 stars</strong></div>
+          </div>
+          <p class="desc">A collection of agent skills that help you build great interfaces.</p>
+          <div class="meta">
+            <span>Markdown</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>该仓库把界面、字体、颜色、无障碍、布局与产品文案拆成可复用 Agent Skills，README 还提供界面变更审查、组件状态检查和设计实现流程。它解决界面评审只看主视觉、容易遗漏焦点、错误文案、长文本和状态覆盖的问题。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>Android 团队可将这些检查维度映射为 Compose 验收清单：语义标签、焦点顺序、触控区域、字体缩放、RTL、空状态与错误恢复。网页 ARIA 规则不直接适用原生控件，需改用 Android semantics 与 TalkBack 验证，并用状态矩阵覆盖真实业务场景。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#12</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/calesthio/OpenMontage" target="_blank" rel="noreferrer">calesthio/OpenMontage</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#12<small>+4,132</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+4,132 stars</strong></div>
+          </div>
+          <p class="desc">World&#39;s first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>OpenMontage 把视频生成、剪辑与制作知识组织成 Agent 驱动的工作流，描述提到多条制作流水线及 FFmpeg、图像生成、配音等工具。它解决从素材、旁白到导出需要人工协调多个模型和软件的问题；工具和文件数量是仓库自述，实际完成度需验证。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>它更适合作为服务端创作流水线参考，而非直接嵌入 App。Android 侧可设计素材上传、任务阶段进度、失败重试、预览与成片下载，并对长视频的缓存、播放和分享做真机性能测试；生成内容还需授权与审核。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#13</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/multica-ai/andrej-karpathy-skills" target="_blank" rel="noreferrer">multica-ai/andrej-karpathy-skills</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#13<small>+3,713</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+3,713 stars</strong></div>
+          </div>
+          <p class="desc">A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy&#39;s observations on LLM coding pitfalls.</p>
+          <div class="meta">
+            <span>未标注</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>该仓库把 Karpathy 对 LLM 编码常见问题的观察整理为单个 CLAUDE.md 指南，README 用思考后编码、保持简单、局部修改及可验证目标四项原则约束 Agent。它解决模型静默假设、过度抽象和顺带修改无关代码的问题。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>可迁移到 Android Agent 开发规范：先定位现有页面与模块边界，再限定改动文件，以 Gradle 构建、Lint、截图和真机行为作为验收标准。规则应结合本项目生命周期和依赖约束编写，不能只靠提示词替代代码审查。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#14</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/ghostty-org/ghostty" target="_blank" rel="noreferrer">ghostty-org/ghostty</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#14<small>+726</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+726 stars</strong></div>
+          </div>
+          <p class="desc">👻 Ghostty is a fast, feature-rich, and cross-platform terminal emulator that uses platform-native UI and GPU acceleration.</p>
+          <div class="meta">
+            <span>Zig</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Ghostty 是使用原生界面与 GPU 加速的终端模拟器，README 另提供 C/Zig 的 libghostty 以嵌入终端或解析终端样式。它解决终端功能、速度和平台交互体验难兼顾的问题；本次 topics 及部分元数据未标注。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>Android 远程终端或研发工具可借鉴终端解析与 UI 分离、增量渲染和输入状态管理。不能据跨平台描述假定 Android 已受支持；若经 JNI 尝试 libghostty，需验证 ABI、字符宽度、中文输入、生命周期和输出缓冲上限。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#15</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/Leonxlnx/taste-skill" target="_blank" rel="noreferrer">Leonxlnx/taste-skill</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#15<small>+5,426</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+5,426 stars</strong></div>
+          </div>
+          <p class="desc">Agent skills that give coding agents taste: art direction, reference images and a browser check instead of generic AI pages</p>
+          <div class="meta">
+            <span>JavaScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Taste Skill 为编码 Agent 提供网站和 App 页面设计的方法，README 强调艺术方向、真实参考图片及真实浏览器检查。它解决生成界面容易套用同一落地页样式、视觉决策缺少参考和验收的问题；当前 topics 未标注，不把示例成效视为所有项目的保证。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>可迁移先找参考、明确视觉方向再做截图复核的流程，帮助 Android 团队确定 Compose 的排版、色彩和信息层级。Web 设计规则不能直接替代 Material 交互、TalkBack 和系统返回行为；原型通过浏览器检查后仍需在字体缩放及不同屏幕上验证原生实现。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#16</span><small>周榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/The-PR-Agent/pr-agent" target="_blank" rel="noreferrer">The-PR-Agent/pr-agent</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#16<small>+1,355</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+1,355 stars</strong></div>
+          </div>
+          <p class="desc">🚀 PR Agent: The Original Open-Source PR Reviewer. This project is not the Qodo free tier.</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>PR-Agent 是社区维护的开源 AI PR 审查工具，README 提供 GitHub Actions 入口，并明确与 Qodo 当前服务区分。它解决变更审查、说明和建议整理的重复工作，code-review 等 topics 指向代码评审辅助；模型建议仍需人工及测试核实。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>Android 仓库可加入模块边界、Manifest、资源和生命周期审查规则，把建议与文件差异、构建结果关联。运行时应限制仓库凭据与外发源码范围，模型评审不能代替 Gradle 检查、设备回归或负责人审批。</p></div>
+          </div>
+        </div>
+      </article></div>
+    </section>
+<section class="period-panel monthly" id="monthly" data-period="monthly">
+      <div class="panel-head">
+        <div>
+          <h2>Monthly Top 20</h2>
+          <p>过去一个月长期热门，更适合判断趋势和生态方向。</p>
+        </div>
+        <span>12 个仓库</span>
+      </div>
+      <div class="rank-list"><article class="rank-card top-1">
+        <div class="rank-no"><span>#1</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/morluto/rea" target="_blank" rel="noreferrer">morluto/rea</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#1<small>+430,792</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+430,792 stars</strong></div>
+          </div>
+          <p class="desc">Reverse engineer anything with agents, from app behavior down to native binaries.</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>REA（Reverse Engineer Anything）通过统一 MCP 接口让 Agent 分析应用行为、原生二进制和反汇编结果，topics 指向 Ghidra、Hopper 与静态分析。它解决逆向工具各自隔离、从观察行为追到二进制实现需要反复手工切换的问题；分析能力应在具体样本上验证。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>仅在拥有授权的应用或自家 APK 上使用：可把动态行为、JNI 库和反编译线索交叉核对，用于安全审计或兼容性排查。它不是 Android 运行时依赖；结果必须人工验证，尤其不能把 Agent 对混淆代码的猜测当成事实。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card top-2">
+        <div class="rank-no"><span>#2</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/boykopovar/AnyPS5" target="_blank" rel="noreferrer">boykopovar/AnyPS5</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#2<small>+47,184</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+47,184 stars</strong></div>
+          </div>
+          <p class="desc">Tool for automatic PS5 executables porting to Linux and Windows</p>
+          <div class="meta">
+            <span>C++</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>AnyPS5 尝试把 PS5 可执行文件移植到 Linux/Windows。README 描述 relinker 转换目标原生格式、补齐动态链接所需系统库，并重新编译着色器到 SPIR-V；它解决平台二进制格式、系统 API 与图形管线不兼容的问题，当前兼容性需看验证清单。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>与 Android 没有直接接入关系。可迁移的是移植项目的分层验证：分别核对可执行格式、系统调用映射、Vulkan 着色器、手柄输入和帧率，并维护已测试设备/游戏矩阵；在 Android 上还需单独处理 ABI、驱动差异与内容授权。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card top-3">
+        <div class="rank-no"><span>#3</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noreferrer">cloudflare/security-audit-skill</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#3<small>+35,956</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+35,956 stars</strong></div>
+          </div>
+          <p class="desc">A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings</p>
+          <div class="meta">
+            <span>JavaScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>这是面向编码 Agent 的多阶段安全审计 Skill，按侦察、覆盖率驱动的漏洞搜寻、候选验证等阶段组织流程，并要求输出可机器读取且经过独立复核的发现。它解决安全审查容易漏掉攻击面、结论没有证据或误报难复核的问题。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>可把阶段门禁迁移到 Android 安全审计：先盘点导出组件、Deep Link、WebView bridge、网络与本地存储，再按覆盖矩阵检查，最后用可复现步骤验证候选问题；输出包含文件位置、影响、证据与修复建议，并只在授权应用上测试。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#4</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/Nutlope/hallmark" target="_blank" rel="noreferrer">Nutlope/hallmark</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#2<small>+6,994</small></span><span class="rank-badge monthly"><b>月榜</b>#4<small>+19,070</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+19,070 stars</strong></div>
+          </div>
+          <p class="desc">Anti-AI-slop design skill for Claude Code, Cursor, and Codex.</p>
+          <div class="meta">
+            <span>CSS</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Hallmark 为编码 Agent 提供网页设计技能，通过主题材料、按用户任务组织页面、浏览器检查和独立复核，减少批量生成网页常见的空洞布局与失效交互。README 将对比度、焦点、减弱动画和移动布局列为基础门槛，并提供重新设计及审计流程。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>与原生 Android 间接相关，可把设计门槛迁移为 Compose 检查清单：TalkBack 焦点、文字对比度、字体缩放、窄屏布局及真实点击结果。WebView 或产品落地页可采用其浏览器验收方式；HTML 主题不能直接充当 Compose 组件库。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#5</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/heygen-com/hyperframes" target="_blank" rel="noreferrer">heygen-com/hyperframes</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#5<small>+22,694</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+22,694 stars</strong></div>
+          </div>
+          <p class="desc">Write HTML. Render video. Built for agents.</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>HyperFrames 让 Agent 用 HTML、CSS 与动画代码描述视频，再结合 GSAP、FFmpeg 和 Puppeteer 渲染成成片。它解决程序化视频生产需要手工时间线、设计与渲染工具链割裂的问题。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>它不是 Android 视频渲染库，但可自动生成版本宣传、功能演示和商店素材；若 App 展示生成结果，应完善任务进度、视频缓存、Media3 播放和失败重试。其 HTML 动画也可用于验证 WebView 活动页，但最终要做真机 GPU 与内存测试。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#6</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/debpalash/VoiceStudio" target="_blank" rel="noreferrer">debpalash/VoiceStudio</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#6<small>+48,803</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+48,803 stars</strong></div>
+          </div>
+          <p class="desc">VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription &amp; audiobook creation in 646 languages.</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>VoiceStudio 是本地优先的 ElevenLabs 开源替代，整合声音克隆、声音设计、视频配音、听写、转写和有声书制作，并覆盖 646 种语言。它解决语音能力分散在多个云服务、隐私数据必须上传、长音频生产难统一管理的问题。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>Android 侧更适合把它当本地或自托管语音后端：设计录音权限与音频采集、分片上传、后台生成、进度轮询、媒体缓存和播放预览；若尝试端侧运行，还需以 ABI 体积、模型下载、内存、热量和低端机降级为准入指标。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#7</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/NationalSecurityAgency/ghidra" target="_blank" rel="noreferrer">NationalSecurityAgency/ghidra</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#7<small>+17,641</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+17,641 stars</strong></div>
+          </div>
+          <p class="desc">Ghidra is a software reverse engineering (SRE) framework</p>
+          <div class="meta">
+            <span>Java</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Ghidra 是跨平台软件逆向分析框架，README 列出反汇编、反编译、图形分析和 Java/Python 脚本扩展，可交互使用或自动化分析多种指令集与可执行格式。它解决复杂二进制分析中的工具扩展、批处理和团队协作需求。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>可对自家或获授权 Android native 库做静态分析，结合 ABI、符号和 JNI 调用路径定位兼容性或安全问题，再用真机行为核对推断。反编译输出需要人工复核；它与 JADX 等处理 DEX 的工具作用不同，应按实际二进制类型选择分析路径。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#8</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/thedotmack/claude-mem" target="_blank" rel="noreferrer">thedotmack/claude-mem</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#1<small>+9,318</small></span><span class="rank-badge monthly"><b>月榜</b>#8<small>+17,621</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+17,621 stars</strong></div>
+          </div>
+          <p class="desc">Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Herme…</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>claude-mem 为编码 Agent 保存跨会话上下文：记录会话活动、用 AI 压缩，再把相关历史注入未来任务。description 和 topics 指向长期记忆、检索、SQLite/向量存储；它解决多轮研发中重复解释项目约束和历史决策的问题。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>可为 Android 多模块项目沉淀已验证的架构决策、Gradle 约束和崩溃修复线索，并为记忆加来源、版本和过期时间。不要把用户数据、签名密钥或生产日志原样存入共享记忆；检索结果仍需用当前代码与测试核实。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#9</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/pingdotgg/t3code" target="_blank" rel="noreferrer">pingdotgg/t3code</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#3<small>+16,235</small></span><span class="rank-badge monthly"><b>月榜</b>#9<small>+22,239</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+22,239 stars</strong></div>
+          </div>
+          <p class="desc">未标注</p>
+          <div class="meta">
+            <span>TypeScript</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>T3 Code 是本机编码 Agent 的远程控制界面。README 说明它连接已在电脑上安装并登录的 Agent，提供 Android/iOS、Web 和 Electron 入口；它解决离开开发机后难以查看与管理 Agent 会话的问题，仓库 description 与 topics 未标注。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>这是直接涉及 Android 客户端的场景。可研究会话流式展示、命令审批、断线恢复和通知跳转，但重点应验证远程访问的认证、设备绑定与敏感日志遮盖；手机端控制桌面 Agent 不等于在手机本地执行构建。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#10</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/pbakaus/impeccable" target="_blank" rel="noreferrer">pbakaus/impeccable</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#9<small>+9,303</small></span><span class="rank-badge monthly"><b>月榜</b>#10<small>+27,205</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+27,205 stars</strong></div>
+          </div>
+          <p class="desc">The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.</p>
+          <div class="meta">
+            <span>Rust</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>Impeccable 为编码 Agent 提供界面设计词汇和审查入口，当前 description 明确提到 polish、bolder、critique、audit，topics 指向设计与生成内容质量。它帮助将模糊的美化要求变成可执行的调整和检查，减少套用通用样式及未经审阅就交付页面的问题。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>可将设计规则组织方式迁移到 Android 团队，把颜色、排版、间距、无障碍和状态规范写成 token 与验收清单，再用截图检查 Agent 产出的 Compose 页面。它不是现成 Compose 组件库，网页审查结果仍需结合 TalkBack、字体缩放和原生交互验证。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#11</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/anthropics/knowledge-work-plugins" target="_blank" rel="noreferrer">anthropics/knowledge-work-plugins</a></h3>
+              <div class="rank-badges"><span class="rank-badge monthly"><b>月榜</b>#11<small>+8,823</small></span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+8,823 stars</strong></div>
+          </div>
+          <p class="desc">Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>这是面向 Claude Cowork 知识工作者的开源插件集合，通过插件扩展不同工作流程。它解决通用助手缺少特定工作上下文和可复用操作入口的问题；当前仓库摘要没有列出全部插件能力。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>与 Android 运行时没有直接关系。可迁移的是把团队重复研发流程封装成受审查的插件/Skill，例如发布说明、崩溃复盘或依赖升级评估，并为每项自动化定义权限、输入来源和人工确认点。</p></div>
+          </div>
+        </div>
+      </article><article class="rank-card">
+        <div class="rank-no"><span>#12</span><small>月榜</small></div>
+        <div class="rank-body">
+          <div class="rank-head">
+            <div>
+              <h3><a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noreferrer">HKUDS/DeepTutor</a></h3>
+              <div class="rank-badges"><span class="rank-badge weekly"><b>周榜</b>#5<small>+6,229</small></span><span class="rank-badge monthly"><b>月榜</b>#12<small>+14,748</small></span><span class="signal">跨榜</span></div>
+            </div>
+            <div class="growth"><span>period growth</span><strong>+14,748 stars</strong></div>
+          </div>
+          <p class="desc">DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/ .</p>
+          <div class="meta">
+            <span>Python</span>
+            <span>未标注 stars</span>
+            <span>未标注 forks</span>
+            <span>未标注</span>
+          </div>
+          <div class="topics"><strong class="topics-label">Topics</strong><span>未标注</span></div>
+          <div class="insights">
+            <div class="insight usecase"><b>主要用途 / 解决的问题</b><p>DeepTutor 面向持续个性化辅导，README 描述学习工作区、知识库、阅读材料、练习评估、学习路径和会话恢复；ai-tutor、interactive-learning 等 topics 与其教育场景一致。它解决学习资料、答疑和阶段练习割裂、长期学习上下文难保留的问题，学习效果仍需实际评测。</p></div>
+            <div class="insight android"><b>Android 开发提升</b><p>教育类 Android App 可参考资料索引、来源展示、练习记录与学习路径分层，将解析和模型任务放在受控后端，客户端负责上传、进度和可恢复会话。可迁移有界记忆与失败恢复设计，但不应把该 Web/Python 项目直接当作 Android SDK。</p></div>
+          </div>
+        </div>
+      </article></div>
+    </section>
+  </main>
+  <footer>Generated by Codex github-trending-report skill.</footer>
+  <script>
+    const buttons = Array.from(document.querySelectorAll('.tab'));
+    const panels = Array.from(document.querySelectorAll('.period-panel'));
+    function showPeriod(period, updateHash = true) {
+      buttons.forEach(button => button.classList.toggle('active', button.dataset.period === period));
+      panels.forEach(panel => panel.classList.toggle('active', panel.dataset.period === period));
+      if (updateHash) history.replaceState(null, '', '#' + period);
+    }
+    buttons.forEach(button => button.addEventListener('click', () => showPeriod(button.dataset.period)));
+    const initial = location.hash.replace('#', '');
+    if (['daily', 'weekly', 'monthly'].includes(initial)) showPeriod(initial, false);
+  </script>
+</body>
+</html>
